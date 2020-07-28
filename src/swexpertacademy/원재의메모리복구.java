@@ -20,8 +20,8 @@ public class 원재의메모리복구 {
 
 			int ans = 0;
 			for (int i = 0; i < arr.length - 1; i++) {
-				if(i==0) {
-					if(arr[i] ==1) {
+				if (i == 0) {
+					if (arr[i] == 1) {
 						ans++;
 					}
 				}
@@ -30,7 +30,7 @@ public class 원재의메모리복구 {
 				}
 			}
 
-			System.out.printf("#%d %d\n",tc,ans);
+			System.out.printf("#%d %d\n", tc, ans);
 
 		}
 		sc.close();

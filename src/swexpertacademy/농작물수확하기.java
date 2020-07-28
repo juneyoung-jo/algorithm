@@ -24,9 +24,11 @@ public class 농작물수확하기 {
 
 			int num = N / 2;
 			int ans = 0;
-
-			for (int i = 0; i < N; i++) {
-				for (int j = Math.abs(i - num); j < N - Math.abs(i - num); j++) {
+			
+			//알고리즘 구현부
+			for (int i = 0; i < N; i++) { //i : 0~N
+				for (int j = Math.abs(i - num); j < N - Math.abs(i - num); j++) { 
+					//j : 2 1 0 1 2, 기준 : 3 4 5 4 3, j_for문 횟수 1번 3번 5번 3번 1번 
 					ans += map[i][j];
 				}
 			}
