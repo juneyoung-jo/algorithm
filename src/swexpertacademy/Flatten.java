@@ -18,6 +18,7 @@ public class Flatten {
 			}
 
 			for (int i = 0; i < N; i++) { // 더하고 뺀다음 정렬해야함.
+				Arrays.sort(arr);
 				++arr[0];
 				--arr[99];
 				Arrays.sort(arr);
