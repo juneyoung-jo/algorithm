@@ -1,15 +1,14 @@
 package swexpertacademy;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class 햄버거다이어트1 { //조합으로 풀기
+public class 햄버거다이어트1 { // 조합으로 풀기
 	static int T, N, L, sum, result, ans;
 	static int[][] numbers;
 	static int[][] arr;
 	static boolean[] sel;
 
-	public static void main(String[] args) { 
+	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
 		T = sc.nextInt();
