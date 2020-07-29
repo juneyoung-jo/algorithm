@@ -14,7 +14,7 @@ public class 달팽이숫자 { // 다시풀어보자 ㅈㄴ어려움
 			int n = sc.nextInt();
 
 			map = new int[n][n];
-			int sw = 1; //음수 양수 스위치값
+			int sw = 1; // 음수 양수 스위치값
 			int row = 0;
 			int col = -1;
 			int count = 1;
