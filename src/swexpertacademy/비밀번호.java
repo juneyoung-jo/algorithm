@@ -2,7 +2,7 @@ package swexpertacademy;
 
 import java.util.Scanner;
 
-public class 비밀번호 {
+public class 비밀번호 { //다시풀자 스택으로
 	static int T = 10;
 	static int N;
 

@@ -22,8 +22,8 @@ public class 농작물수확하기 {
 				}
 			}
 
-			int num = N / 2;
-			int ans = 0;
+			int num = N / 2; //중간값이 필요함.
+			int ans = 0; 
 			
 			//알고리즘 구현부
 			for (int i = 0; i < N; i++) { //i : 0~N
