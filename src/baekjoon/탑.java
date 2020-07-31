@@ -30,7 +30,7 @@ public class 탑 {
 					sb.append(st.peek()[0] + 1 + " ");
 					st.push(new int[] { i, n });
 					break;
-				} else {
+				} else { // 스택에 들어와 있는 값이 들어올 n값보다 작을 때
 					st.pop();
 				}
 			}
