@@ -22,13 +22,13 @@ public class 영식이와친구들 {
 		int ans = 0;
 		while (isok) {
 			ans++;
-			if (arr[index] % 2 == 1) { // 여기부터 짜면됨 짝홀비교 & 공 던지고 따라가기 & 값증가
+			if (arr[index] % 2 == 1) { // 짝홀비교 & 공 던지고 따라가기 & 값증가
 				index += L;
 				index = Math.abs(index) % N;
 				arr[index]++;
 			} else {
-				index = N + index - L;
-				index = Math.abs(index) % N;
+				index = N + index - L; 
+				index = Math.abs(index) % N; //짝수면 -2만큼 가는데 그냥 빼면안됨, (총인원 + 인덱스(자리) - L(증가량)) %총인원
 				arr[index]++;
 			}
 
