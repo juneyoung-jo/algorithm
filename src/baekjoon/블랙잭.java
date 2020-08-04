@@ -18,10 +18,11 @@ public class 블랙잭 {
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = sc.nextInt();
 		}
-
-		numbers = new int[3];
-		combination(0, 0);
+		//알고리즘 
+		numbers = new int[3]; //3장의 카드를 뽑는다.
+		combination(0, 0); //조합
 		System.out.println(ans);
+		ans=0;
 
 	}
 
@@ -31,7 +32,7 @@ public class 블랙잭 {
 			for (int i = 0; i < numbers.length; i++) {
 				max += numbers[i];
 			}
-			if (M - max >= 0) {
+			if (M - max >= 0) { // 나온 경우의 수 합을 구한 후 큰값을 저장
 				ans = Math.max(ans, max);
 			}
 			return;

@@ -9,13 +9,9 @@ public class 단어뒤집기2 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder  sb = new StringBuilder();
-		String[] stra = br.readLine().split(" ");
-		String str = "";
-
-		for (int i = 0; i < stra.length; i++) {
-			str = str + stra[i] + " ";
-		}
+		StringBuilder sb = new StringBuilder();
+		String str = br.readLine();
+		str += " ";
 
 		Stack<Character> stack = new Stack<Character>();
 		char[] arr = new char[str.length()];
@@ -25,6 +21,11 @@ public class 단어뒤집기2 {
 			arr[i] = str.charAt(i);
 		}
 
+		// 알고리즘 구현
+		/*
+		 * '<'가 나오면 '>'가 나올때까지 sb에 저장하고 , 그냥 문자가 나오면 스택에 ' ' or '<'가 나올때까지 저장 후 한번에 sb에
+		 * 저장(단어 뒤집기)
+		 */
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == ' ') {
 				while (!stack.isEmpty()) {
@@ -38,28 +39,25 @@ public class 단어뒤집기2 {
 				while (!stack.isEmpty()) {
 					sb.append(stack.pop());
 				}
-				stack.push(arr[i]);
-				sb.append(stack.pop());
+				sb.append(arr[i]);
 				isok = true;
 				continue;
 			}
 
 			if (isok) {
 				if (arr[i] == '>') {
-					stack.push(arr[i]);
-					sb.append(stack.pop());
+					sb.append(arr[i]);
 					isok = false;
 					continue;
 				}
-				stack.push(arr[i]);
-				sb.append(stack.pop());
+				sb.append(arr[i]);
 				continue;
 			}
 
 			stack.push(arr[i]);
 		}
-		
-		sb.deleteCharAt(sb.length()-1);
+
+		sb.deleteCharAt(sb.length() - 1);
 		System.out.println(sb);
 
 	}
