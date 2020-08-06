@@ -30,21 +30,21 @@ public class 종교_1863 {
 			union(x, y);
 		}
 
-		//print(parents);
+		// print(parents);
 		int Ans = 0;
 		for (int i = 1; i <= n; i++) { // 종교의 수 담기
 			if (parents[i] == i) {
 				Ans++;
 			}
 		}
-
+		print(rank);
 		System.out.println(Ans);
 
 		sc.close();
 	}
 
 	private static void print(int[] parents) {
-		for (int i = 0; i < parents.length; i++) {
+		for (int i = 1; i <= parents.length; i++) {
 			System.out.print(parents[i] + " ");
 		}
 	}
