@@ -21,6 +21,18 @@ public class 사나운개 {
 		M = sc.nextInt();
 		N = sc.nextInt();
 
+		// 알고리즘
+		// 2가지의 경우가 나옴
+		// 배달시간을 (공격 + 대기)로 나눈 나머지가 0이 아닐 때 
+		// 나온값에 공격시간을 뺀값이 0이하면 물림
+		
+		//ex) 4 % (2+2) = 0 //안물림
+		//ex) 1 % (2+2) = 1 , 1 - 2 = -1  //물림
+		//ex) 2 % (2+2) = 2 , 2 - 2 = 0 //물림
+		//ex) 3 % (2+2) = 3 , 3 - 2 = 1 //안물림
+		
+		 
+
 		if (P % (A + B) != 0) {
 			if (P % (A + B) - A <= 0) {
 				result++;
@@ -57,7 +69,7 @@ public class 사나운개 {
 		System.out.println(result);
 		System.out.println(result1);
 		System.out.println(result2);
-		
+
 		sc.close();
 
 	}

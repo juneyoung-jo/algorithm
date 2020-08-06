@@ -47,7 +47,9 @@ public class 달팽이삼각형 {
 			sw *= -1;
 
 		}
-
+		
+		
+		//출력부분
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j <= i; j++) {
 				System.out.print(map[i][j] % 10 + " ");

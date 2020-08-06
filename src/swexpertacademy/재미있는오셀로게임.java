@@ -19,7 +19,7 @@ public class 재미있는오셀로게임 {
 
 			map = new char[N][N];
 
-			switch (N) {
+			switch (N) {//각 케이스마다 초기 맵 설정
 			case 4:
 				map[1][1] = 'w';
 				map[1][2] = 'b';
@@ -63,22 +63,22 @@ public class 재미있는오셀로게임 {
 
 					if (nr >= 0 && nr < N && nc >= 0 && nc < N) { // 테투리
 						if (arr[2] == 1) {// 흑돌인경우
-							if (map[nr][nc] == 'w') {
-								int count = 0;
-								while (true) {
+							if (map[nr][nc] == 'w') { //8방중 백돌이 있을 경우
+								int count = 0;// 카운트 값으로 기존에 왔던 값 저장( ex 흑 백백 흑 이면 카운트가 2번 돌아서 백돌 2개 다 흑돌로 바뀜 
+								while (true) {// 같은방향으로 그다음 흑돌 or 빈칸이 나올 때 까지 진행
 									nr += dr[cnt];
 									nc += dc[cnt];
 									if (nr >= 0 && nr < N && nc >= 0 && nc < N) {
-										if (map[nr][nc] == 'b') {
+										if (map[nr][nc] == 'b') { //흑돌이 나온 경우 왔던길 전부다 흑돌로 바꿈
 											for (int j = 0; j <= count; j++) {
 												nr -= dr[cnt];
 												nc -= dc[cnt];
 												map[nr][nc] = 'b';
 											}
 											break;
-										} else if (map[nr][nc] == '\u0000') {
+										} else if (map[nr][nc] == '\u0000') { //빈칸이 나온 경우 그냥 빠져나와야함
 											break;
-										} else {
+										} else { 
 											count++;
 										}
 									} else {
@@ -132,9 +132,9 @@ public class 재미있는오셀로게임 {
 			}
 
 			System.out.printf("#%d %d %d\n", tc, countb, countw);
-			countb=0; //초기화 => 지역변수로 만들자...
-			countw=0; //초기화
-			
+			countb = 0; // 초기화 => 지역변수로 만들자...
+			countw = 0; // 초기화
+
 		}
 
 	}

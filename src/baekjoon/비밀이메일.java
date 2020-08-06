@@ -12,7 +12,9 @@ public class 비밀이메일 {
 
 		str = sc.next();
 		int num = str.length();
-		int sq = (int) Math.sqrt(num); // r <= c , r*c =N의 조건은 제곱근을 구해야함.
+
+		// 알고리즘 : r과 c를 구하는 문제
+		int sq = (int) Math.sqrt(num); // r <= c , r*c = N -> 제곱근을 구해야함.
 		arr = new char[num];
 		r = 0;
 		c = 0;
