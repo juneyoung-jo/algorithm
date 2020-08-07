@@ -1,8 +1,11 @@
 package swexpertacademy;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class 최소스패닝트리 {
 	static int T, V, E, parents[];
@@ -24,20 +27,21 @@ public class 최소스패닝트리 {
 
 	}
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		T = sc.nextInt();
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		T = Integer.parseInt(br.readLine());
 		for (int tc = 1; tc <= T; tc++) {
-
-			V = sc.nextInt();
-			E = sc.nextInt();
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			V = Integer.parseInt(st.nextToken());
+			E = Integer.parseInt(st.nextToken());
 			parents = new int[100001];
 			ArrayList<Edge> edge = new ArrayList<Edge>();
 
 			for (int i = 0; i < E; i++) {
-				int from = sc.nextInt();
-				int to = sc.nextInt();
-				int cost = sc.nextInt();
+				st = new StringTokenizer(br.readLine());
+				int from = Integer.parseInt(st.nextToken());
+				int to = Integer.parseInt(st.nextToken());
+				int cost = Integer.parseInt(st.nextToken());
 
 				edge.add(new Edge(from, to, cost));
 			}
