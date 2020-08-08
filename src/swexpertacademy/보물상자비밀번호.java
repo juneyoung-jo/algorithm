@@ -1,13 +1,13 @@
 package swexpertacademy;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class 보물상자비밀번호 {
-	static int T, N, K, cnt, sum;
-	static int[] Ans;
+	static int T, N, K, cnt;
+	static long sum;
+	static long[] Ans;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class 보물상자비밀번호 {
 		for (int tc = 1; tc <= T; tc++) {
 			N = sc.nextInt();
 			K = sc.nextInt();
-			Ans = new int[N];
+			Ans = new long[10000];
 			cnt = N / 4;
 			ArrayList<Character> arr = new ArrayList();
 			ArrayList<Character> arr_2 = new ArrayList();
@@ -28,48 +28,78 @@ public class 보물상자비밀번호 {
 
 			}
 
-			if (cnt < K) { // cnt번만 반복
-				for (int i = 0; i < cnt; i++) {
-					arr.add(arr.remove(0));
+			for (int i = 0; i <= cnt; i++) {
+				if (i == 0) {
 					for (int j = 0; j < arr.size(); j++) {
 						arr_2.add(arr.get(j));
 					}
+					continue;
 				}
-
-			} else { // k번 반복
-				for (int i = 0; i < K; i++) {
-
+				arr.add(arr.remove(0));
+				for (int j = 0; j < arr.size(); j++) {
+					arr_2.add(arr.get(j));
 				}
 			}
 
 			compute(arr_2); // 계산
 
-//			for (Character cr : arr_2) {
-//				System.out.print(cr + " ");
-//			}
+			// 중복제거
+			for (int i = 0; i < Ans.length; i++) {
+				if (Ans[i] == 0) {
+					break;
+				}
+				for (int j = i - 1; j >= 0; j--) {
+					if (Ans[i] == Ans[j]) {
+						Ans[j] = 0;
+					}
+				}
+			}
+			ArrayList<Long> list = new ArrayList<Long>();
+			for (int i = 0; i < Ans.length; i++) {
+				list.add(Ans[i]);
+			}
+			Collections.sort(list);
+			Collections.reverse(list);
 
+			System.out.printf("#%d %d\n", tc, list.get(K - 1));
 		}
 
 	}
 
 	private static void compute(ArrayList<Character> arr) {
-		for (int i = 0; i < 3; i++) {
-			if (arr.get(i) == 'A') {
-				sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 10;
-			} else if (arr.get(i) == 'B') {
-				sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 11;
-			} else if (arr.get(i) == 'C') {
-				sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 12;
-			} else if (arr.get(i) == 'D') {
-				sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 13;
-			} else if (arr.get(i) == 'E') {
-				sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 14;
-			} else if (arr.get(i) == 'F') {
-				sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 15;
-			} else {
-				sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * (arr.get(i) - '0');
+		for (int j = 0; j < Ans.length; j++) {
+			boolean isok = false;
+			for (int i = 0; i < arr.size(); i++) {
+				if (arr.get(i) == 'A') {
+					sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 10;
+				} else if (arr.get(i) == 'B') {
+					sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 11;
+				} else if (arr.get(i) == 'C') {
+					sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 12;
+				} else if (arr.get(i) == 'D') {
+					sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 13;
+				} else if (arr.get(i) == 'E') {
+					sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 14;
+				} else if (arr.get(i) == 'F') {
+					sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 15;
+				} else {
+					sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * (arr.get(i) - '0');
+				}
+
+				if (i % cnt == cnt - 1) {
+					Ans[j] = sum;
+					j++;
+					sum = 0;
+				}
+
+				if (i == arr.size() - 1) {
+					isok = true;
+					break;
+				}
 			}
-			System.out.println(sum);
+			if (isok) {
+				break;
+			}
 		}
 	}
 
