@@ -5,10 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class 디저트카페 {
+public class 디저트카페미완성 {
 	static int T, N, map[][];
 	static int[] dr = { 1, 1, -1, -1 }; // 오른쪽 아래 대각선부터 시계방향
 	static int[] dc = { 1, -1, -1, 1 };
+	static boolean[] v;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,10 +31,18 @@ public class 디저트카페 {
 			int ccount = 0;
 			for (int r = 0; r < map.length - 1; r++) {
 				for (int c = 1; c < map.length - 1; c++) {
-
+					dessert(r, c);
 				}
 			}
 		}
+	}
+
+	private static void dessert(int r, int c) {
+		v = new boolean[101];
+		v[map[r][c]] = true;
+		int cnt = 0;
+		
+
 	}
 
 	private static void print(int[][] map) {
