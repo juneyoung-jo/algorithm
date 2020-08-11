@@ -38,7 +38,7 @@ public class 연산자끼워넣기 {
 	private static void permutation(int idx) {
 		if (idx == opnum) {
 			int sum = arr[0];
-			for (int i = 1; i < arr.length; i++) {
+			for (int i = 1; i < arr.length; i++) { //1번 부터 해야 연산자 부터 계산됨 0번은 숫자임
 				if (p_op[i - 1] == '+') {
 					sum += arr[i];
 				}
@@ -69,7 +69,7 @@ public class 연산자끼워넣기 {
 
 	}
 
-	private static void opSet() {
+	private static void opSet() {//0~4까지의 배열에 담겨있는 숫자만큼의 연산자 배열을 만들어 각각 저장
 		int idx = 0;
 		for (int j = 0; j < 4; j++) {
 			if (j == 0) {

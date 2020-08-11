@@ -19,15 +19,19 @@ public class 보물상자비밀번호 {
 			K = sc.nextInt();
 			Ans = new long[10000];
 			cnt = N / 4;
-			ArrayList<Character> arr = new ArrayList();
-			ArrayList<Character> arr_2 = new ArrayList();
+			ArrayList<Character> arr = new ArrayList<>();
+			ArrayList<Character> arr_2 = new ArrayList<>();
 
 			String str = sc.next();
 			for (int i = 0; i < N; i++) {
 				arr.add(str.charAt(i));
 
 			}
-
+			
+			//알고리즘
+			//제일 앞숫자를 뒤에 써야하기 때문에 어레이 리스트 사용
+			//길이가 길지 않기 때문에  어레이 리스트 2개 사용하여 한번에 계산함.
+			//N -> 28이하 정수
 			for (int i = 0; i <= cnt; i++) {
 				if (i == 0) {
 					for (int j = 0; j < arr.size(); j++) {
@@ -54,12 +58,14 @@ public class 보물상자비밀번호 {
 					}
 				}
 			}
+			
+			
 			ArrayList<Long> list = new ArrayList<Long>();
 			for (int i = 0; i < Ans.length; i++) {
 				list.add(Ans[i]);
 			}
-			Collections.sort(list);
-			Collections.reverse(list);
+			Collections.sort(list); //정렬
+			Collections.reverse(list); //역순 정렬
 
 			System.out.printf("#%d %d\n", tc, list.get(K - 1));
 		}
@@ -69,7 +75,7 @@ public class 보물상자비밀번호 {
 	private static void compute(ArrayList<Character> arr) {
 		for (int j = 0; j < Ans.length; j++) {
 			boolean isok = false;
-			for (int i = 0; i < arr.size(); i++) {
+			for (int i = 0; i < arr.size(); i++) {//자리수를 구해서 16진수 계산
 				if (arr.get(i) == 'A') {
 					sum += Math.pow(16, Math.abs((i % cnt) - (cnt - 1))) * 10;
 				} else if (arr.get(i) == 'B') {

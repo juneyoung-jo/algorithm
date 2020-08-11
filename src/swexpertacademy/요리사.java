@@ -44,6 +44,7 @@ public class 요리사 {
 				list.add(i);
 			}
 			
+			//조합에 있는 수 제거(없는 수만 나옴)
 				for (int j = 0; j < arr.length; j++) {
 					for (int i = 0; i < list.size(); i++) {
 					if(arr[j] == list.get(i)) {
@@ -72,6 +73,8 @@ public class 요리사 {
 			Ans = Math.min(sumAB, Ans);
 			return;
 		}
+		
+		//조합 코드
 		for (int i = start; i < N; i++) {
 			arr[idx] = i;
 			combination(idx + 1, i + 1);
