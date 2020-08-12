@@ -59,7 +59,8 @@ public class SSAFY {
 
 	private static void bfs(Point point) {
 		v = new boolean[M][N];
-		Queue<Point> q = new LinkedList<Point>();
+		Queue<Point> q = new LinkedList<Point>(); // 0을 담는 큐
+		Queue<Point> q2 = new LinkedList<Point>(); // 1을 담는 큐
 		v[point.r][point.c] = true;
 		q.add(point);
 		while (!q.isEmpty()) {
@@ -75,14 +76,15 @@ public class SSAFY {
 					v[nr][nc] = true;
 					q.add(new Point(nr, nc, p.cnt));
 				}
-			}
-			for (int k = 0; k < 4; k++) {// 4방체크
-				int nr = p.r + dr[k];
-				int nc = p.c + dc[k];
-
 				if (nr >= 0 && nc >= 0 && nr < M && nc < N && !v[nr][nc] && map[nr][nc] == 1) {
 					v[nr][nc] = true;
-					q.add(new Point(nr, nc, p.cnt + 1));
+					q2.add(new Point(nr, nc, p.cnt + 1));
+				}
+			}
+
+			if (q.isEmpty()) {
+				if (!q2.isEmpty()) {
+					q.add(q2.poll());
 				}
 			}
 
