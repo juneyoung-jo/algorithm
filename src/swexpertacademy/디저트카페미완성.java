@@ -76,27 +76,28 @@ public class 디저트카페미완성 {
 		if (nr >= 0 && nc >= 0 && nr < N && nc < N && !vmap[nr][nc] && !v[map[nr][nc]]) {
 			rcount++;
 			dessert(new Point(nr, nc, p.cost + 1), vmap, v);
-//			v[map[nr][nc]] = false;
-//			vmap[nr][nc] = false;
-//			rcount--;
 
 		}
 
-		print(vmap);
-		System.out.println(p.cost);
-
-//		if (rcount != 0) {
-//			nr = p.r + dr[1];
-//			nc = p.c + dc[1];
+//		if (rcount >= 1) {
+//			int nnr = p.r + dr[1];
+//			int nnc = p.c + dc[1];
 //
-//			if (nr >= 0 && nc >= 0 && nr < N && nc < N && !vmap[nr][nc] && !v[map[nr][nc]]) {
+//			if (nnr >= 0 && nnc >= 0 && nnr < N && nnc < N && !vmap[nnr][nnc] && !v[map[nnr][nnc]]) {
 //				ccount++;
-//				dessert(new Point(nr, nc, p.cost + 1), vmap, v);
-//				v[map[nr][nc]] = false;
-//				vmap[nr][nc] = false;
+//				dessert(new Point(nnr, nnc, p.cost + 1), vmap, v);
+//				v[map[nnr][nnc]] = false;
+//				vmap[nnr][nnc] = false;
 //				ccount--;
 //			}
 //		}
+
+//		v[map[nr][nc]] = false;
+//		vmap[nr][nc] = false;
+//		rcount--;
+
+		print(vmap);
+		System.out.println(p.cost);
 
 		// 올라가는거만 하면 됨. rcount or count 가 1이상일 때만 돌리면 아마 될듯?
 //		if (rcount >= 1 && ccount >= 1) {

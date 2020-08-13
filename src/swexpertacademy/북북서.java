@@ -28,7 +28,7 @@ public class 북북서 {
 			}
 
 			int num = 1;
-			double sum = 0;
+			double sum = 0; // 소수점이 있기 때문에 double로 만들어야함. 출력을 쉽게 하기 위해서
 			// 가장 오른쪽에 있는 북or서 계산
 			if (st.peek() == "west") {
 				sum = 90;
@@ -48,6 +48,7 @@ public class 북북서 {
 				}
 
 			}
+			  
 			int n = 2;
 			if (sum - (int) sum == 0) { // 값이 딱 떨어졌을 경우는 그냥 계산해서 나오면됨.
 				System.out.printf("#%d %d\n", tc, (int) sum);

@@ -28,7 +28,8 @@ public class 수지의수지맞는여행 {
 					map[i][j] = str.charAt(j);
 				}
 			}
-
+			
+			//알고리즘
 			v = new boolean[26]; // 알파벳 수 (중복체크할거임)
 			dfs(0, 0);
 
@@ -48,6 +49,7 @@ public class 수지의수지맞는여행 {
 
 			if (nr >= 0 && nc >= 0 && nr < R && nc < C && !v[map[nr][nc] - 'A']) {
 				dfs(nr, nc);
+				
 			}
 		}
 		v[map[r][c] - 'A'] = false;
