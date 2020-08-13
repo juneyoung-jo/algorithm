@@ -54,7 +54,6 @@ public class SSAFY2 {
 		System.out.println(min);
 	}
 
-
 	private static void bfs(Point point) {
 		v = new boolean[M][N];
 		PriorityQueue<Point> q = new PriorityQueue<Point>(); // 0을 담는 큐
@@ -63,7 +62,8 @@ public class SSAFY2 {
 		while (!q.isEmpty()) {
 			Point p = q.poll();
 			if (p.r == M - 1 && p.c == N - 1) {
-				min = Math.min(min, p.cnt);
+				min = p.cnt;
+				return;
 			}
 			for (int k = 0; k < 4; k++) {// 4방체크
 				int nr = p.r + dr[k];
