@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class NQueen {
 	static int T, N, map[][], numbers[], cnt;
-	static int[] dr = { -1, -1, -1, 0, 1, 1, 1, 0 }; // 8방
-	static int[] dc = { -1, 0, 1, 1, 1, 0, -1, -1 };
+	static int[] dr = { 1, 1, -1, -1 }; // 4방(상하좌우는 안봐도됨).
+	static int[] dc = { 1, -1, 1, -1 };
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -39,7 +39,7 @@ public class NQueen {
 			for (int i = 0; i < bl.length; i++) {
 				for (int j = 0; j < bl.length; j++) {
 					if (bl[i][j] == true) {
-						for (int k = 0; k < 8; k++) {
+						for (int k = 0; k < 4; k++) {
 							for (int n = 1; n <= N; n++) {
 								int nr = i + dr[k] * n;
 								int nc = j + dc[k] * n;
