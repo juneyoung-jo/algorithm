@@ -24,7 +24,8 @@ public class 최장경로 {
 				p[i] = new ArrayList<Integer>();
 
 			}
-
+			//알고리즘
+			//인접리스트 구해서 dfs돌려서 가장 긴 경로 찾는 문제
 			for (int i = 0; i < M; i++) {
 				st = new StringTokenizer(br.readLine());
 				int from = Integer.parseInt(st.nextToken());
@@ -32,7 +33,7 @@ public class 최장경로 {
 				p[from].add(to);
 				p[to].add(from);
 			}
-
+			
 			for (int i = 1; i <= N; i++) {
 				int cnt = 1;
 				dfs(p, i, new boolean[N + 1], cnt);

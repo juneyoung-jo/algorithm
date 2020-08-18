@@ -10,6 +10,10 @@ public class GCD {
 		Scanner sc = new Scanner(System.in);
 		T = sc.nextInt();
 		v = new long[91][2];
+
+		// 알고리즘
+		// 피보나치 수열?임.
+		// for - while로 먼저 짜고 결과값 비교해서 만듬 -> 시간초과
 		for (int tc = 1; tc <= T; tc++) {
 			K = sc.nextInt();
 			int a = 2;

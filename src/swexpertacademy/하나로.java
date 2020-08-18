@@ -52,7 +52,10 @@ public class 하나로 {
 			}
 
 			E = Double.parseDouble(br.readLine());
-
+			
+			//알고리즘
+			//크루스칼 알고리즘 최소신장트리 구하는 문제
+			//비용 계산하는게 관건임. 좌표로 잘 나와있으니 빼서 제곱해서 구하면 됨.
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
 					list.add(new Point(i, j, (long) Math.pow(Math.abs(arr[i][0] - arr[j][0]), 2)

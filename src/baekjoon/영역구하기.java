@@ -51,6 +51,8 @@ public class 영역구하기 {
 			arr[i][3] = Integer.parseInt(st.nextToken());
 		}
 
+		// 좌표를 가지고 행렬에 자리표시하는게 어려웠음.
+		// 양쪽 끝 2개만 구하면 쉽게 할 수 있음.
 		for (int i = 0; i < arr.length; i++) {
 			Ans[i][0] = M - 1 - arr[i][1];
 			Ans[i][1] = arr[i][0];

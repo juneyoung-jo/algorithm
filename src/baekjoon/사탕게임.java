@@ -20,7 +20,11 @@ public class 사탕게임 {
 				map[i][j] = str.charAt(j);
 			}
 		}
-
+		
+		
+		//알고리즘
+		//완탐 문제인듯
+		//행, 열 하나씩 바꿔가면서 전부 다 탐색하면 끝
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < N - 1; c++) {
 				if (map[r][c] == map[r][c + 1]) {

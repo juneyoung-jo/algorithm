@@ -42,7 +42,7 @@ public class 미생물격리 {
 			// 큐를 사용해서 한번에 다 처리해야함.
 			Queue<Point> q = new LinkedList<Point>();
 
-			map = new int[N][N][3]; // n행 n열 + {미생물수, 방향} -> 3차원 배열로 하면 쉬울듯
+			map = new int[N][N][3]; // n행 n열 + {미생물수, 방향, 비교 후 큰값} -> 3차원 배열로 하면 쉬울듯
 
 			for (int i = 0; i < K; i++) {
 				st = new StringTokenizer(br.readLine());
@@ -50,6 +50,10 @@ public class 미생물격리 {
 						Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
 			}
 
+			// 알고리즘
+			// 한번에 모든게 원소들이 다 이동해야 하기 때문에 큐를 사용했음.
+			// 맵을 초기화 하고 하나씩 계산해 나가면 풀림.
+			// 계산하고 또 초기화해야함.
 			for (int idx = 0; idx < M; idx++) { // 회전 수
 				// 큐에서 하나씩 꺼내면서 값 map에 저장
 				while (!q.isEmpty()) {
