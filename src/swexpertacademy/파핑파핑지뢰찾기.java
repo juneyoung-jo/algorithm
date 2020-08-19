@@ -9,8 +9,10 @@ import java.util.Queue;
 public class 파핑파핑지뢰찾기 { // 시간초과 메모리초과나서 다시 풀어야 할 듯 + 답도 틀림.
 	static int T, N, cnt;
 	static char[][] map;
+	static boolean[][] v;
 	static int[] dr = { -1, -1, -1, 0, 1, 1, 1, 0 };
 	static int[] dc = { -1, 0, 1, 1, 1, 0, -1, -1 };
+	static Queue<Point> q;
 
 	static class Point {
 		int r;
@@ -32,6 +34,7 @@ public class 파핑파핑지뢰찾기 { // 시간초과 메모리초과나서 �
 			N = Integer.parseInt(br.readLine());
 
 			map = new char[N][N];
+			v = new boolean[N][N];
 
 			for (int i = 0; i < N; i++) {
 				String str = br.readLine();
@@ -43,23 +46,35 @@ public class 파핑파핑지뢰찾기 { // 시간초과 메모리초과나서 �
 			// 알고리즘 bfs를 써야할 듯
 			cnt = 0;
 
-//			for (int r = 0; r < N; r++) {
-//				for (int c = 0; c < N; c++) {
-//					if (map[r][c] == '.') {
-//						cnt++;
-//						bfs(new Point(r, c));
-//					}
-//
-//				}
-//			}
+			for (int r = 0; r < N; r++) {
+				for (int c = 0; c < N; c++) {
+					int counta = 0;
+					if (map[r][c] == '.' && !v[r][c]) {
+						for (int k = 0; k < 8; k++) {
+							int nr = r + dr[k];
+							int nc = c + dc[k];
 
-			bfs(new Point(0, 3));
+							if (nr >= 0 && nc >= 0 && nr < N && nc < N) {
+								if (map[nr][nc] == '*') {
+									counta++;
+									break;
+								}
+
+							}
+						}
+						if (counta == 0) {
+							cnt++;
+							bfs(new Point(r, c));
+						}
+					}
+
+				}
+			}
 
 			for (int r = 0; r < N; r++) {
 				for (int c = 0; c < N; c++) {
-					if (map[r][c] == '.') {
+					if (map[r][c] == '.' && !v[r][c]) {
 						cnt++;
-//						bfs(new Point(r, c));
 					}
 
 				}
@@ -67,19 +82,20 @@ public class 파핑파핑지뢰찾기 { // 시간초과 메모리초과나서 �
 
 			System.out.printf("#%d %d\n", tc, cnt);
 
-			print(map);
+//			print(map);
 
 		}
 
 	}
 
 	private static void bfs(Point point) {
-		Queue<Point> q = new LinkedList<Point>();
+		q = new LinkedList<Point>();
 		q.add(point);
-		int count = 0; // 지뢰 수
+		v[point.r][point.c] = true;
+
 		while (!q.isEmpty()) {
 			Point p = q.poll();
-
+			int count = 0; // 지뢰 수
 			for (int k = 0; k < 8; k++) {
 				int nr = p.r + dr[k];
 				int nc = p.c + dc[k];
@@ -91,15 +107,17 @@ public class 파핑파핑지뢰찾기 { // 시간초과 메모리초과나서 �
 
 			}
 
-			map[p.r][p.c] = (char) (count + '0');
-			count = 0;
-			for (int k = 0; k < 8; k++) {
-				int nr = p.r + dr[k];
-				int nc = p.c + dc[k];
+			if (count == 0) {
+				map[p.r][p.c] = (char) (count + '0');
+				for (int k = 0; k < 8; k++) {
+					int nr = p.r + dr[k];
+					int nc = p.c + dc[k];
 
-				if (nr >= 0 && nc >= 0 && nr < N && nc < N) {
-					if (map[nr][nc] == '.') {
-						q.add(new Point(nr, nc));
+					if (nr >= 0 && nc >= 0 && nr < N && nc < N && !v[nr][nc]) {
+						if (map[nr][nc] == '.') {
+							v[nr][nc] = true;
+							q.add(new Point(nr, nc));
+						}
 					}
 				}
 
