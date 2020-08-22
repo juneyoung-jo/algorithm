@@ -16,6 +16,7 @@ public class 일곱난쟁이 {
 		}
 
 		permutation(0, 0);
+
 	}
 
 	private static void permutation(int idx, int start) {
