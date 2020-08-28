@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class 무선충전 {
-	static int T, M, A;
+public class 무선충전 { //정답은 맞는데 테케가 빡빡하면 틀릴수도?
+	static int T, M, A, Ans;
 	static int[][] map = new int[10][10];
 	static int[][] move, bc;
 	static int[] dr = { 0, -1, 0, 1, 0 };
@@ -61,6 +61,118 @@ public class 무선충전 {
 
 			Point Aman = new Point(0, 0, 0);
 			Point Bman = new Point(9, 9, 0);
+			{
+				dupA = new boolean[A];
+				dupB = new boolean[A];
+
+				cal(Aman.c, Aman.r, dupA);
+				cal(Bman.c, Bman.r, dupB);
+
+				int cnta = 0;
+				int cntb = 0;
+
+				for (int j = 0; j < A; j++) {
+					if (dupA[j]) {
+						cnta++;
+					}
+					if (dupB[j]) {
+						cntb++;
+					}
+				}
+
+				if (cnta + cntb == 1) {// 그냥 계산하면 됨.
+					for (int j = 0; j < A; j++) {
+						if (dupA[j]) {
+							Ans += bc[j][3];
+							break;
+						}
+						if (dupB[j]) {
+							Ans += bc[j][3];
+							break;
+						}
+					}
+				} else if (cnta == 1 && cntb == 1) {
+					for (int j = 0; j < A; j++) {
+						if (dupA[j] && dupB[j]) {
+							Ans += bc[j][3];
+							break;
+						} else {
+							if (dupA[j]) {
+								Ans += bc[j][3];
+							}
+							if (dupB[j]) {
+								Ans += bc[j][3];
+							}
+						}
+					}
+
+				} else {// 중복이 있을 수 있으니 체크 해서 값 넣어야 함.
+					int maxA = 0;
+					int maxB = 0;
+
+					for (int j = 0; j < A; j++) {
+						if (dupA[j]) {
+							maxA = Math.max(maxA, bc[j][3]);
+						}
+					}
+
+					for (int j = 0; j < A; j++) {
+						if (dupB[j]) {
+							maxB = Math.max(maxB, bc[j][3]);
+						}
+					}
+
+					if (maxA == maxB) {
+						if (cnta >= 2 && cntb == 1) {
+							Ans += maxB;
+							int maxC = 0;
+							for (int j = 0; j < A; j++) {
+								if (dupA[j] && bc[j][3] != maxB) {
+									maxC = Math.max(maxC, bc[j][3]);
+								}
+							}
+							Ans += maxC;
+						} else if (cnta == 1 && cntb >= 2) {
+							Ans += maxA;
+							int maxC = 0;
+							for (int j = 0; j < A; j++) {
+								if (dupB[j] && bc[j][3] != maxA) {
+									maxC = Math.max(maxC, bc[j][3]);
+								}
+							}
+							Ans += maxC;
+						} else {// 둘다 2 이상이면
+							int maxAA = 0;
+							int maxBB = 0;
+							for (int j = 0; j < A; j++) {
+								if (dupA[j] && bc[j][3] != maxA) {
+									maxAA = Math.max(maxAA, bc[j][3]);
+								}
+							}
+							for (int j = 0; j < A; j++) {
+								if (dupB[j] && bc[j][3] != maxB) {
+									maxBB = Math.max(maxBB, bc[j][3]);
+								}
+							}
+
+							if (maxAA > maxBB) {
+								Ans += maxAA;
+								Ans += maxB;
+							} else {
+								Ans += maxBB;
+								Ans += maxA;
+							}
+
+						}
+
+					} else {
+						Ans += maxA;
+						Ans += maxB;
+					}
+				}
+
+			}
+
 			for (int i = 0; i < M; i++) {
 				Aman.r += dr[move[0][i]];
 				Aman.c += dc[move[0][i]];
@@ -76,25 +188,120 @@ public class 무선충전 {
 				int cnta = 0;
 				int cntb = 0;
 				for (int j = 0; j < A; j++) {
-					if (dupA[j] == true) {
+					if (dupA[j]) {
 						cnta++;
 					}
-					if (dupB[j] == true) {
-						cnta++;
+					if (dupB[j]) {
+						cntb++;
 					}
 				}
-
+				if (cnta + cntb == 0)
+					continue;
 				if (cnta + cntb == 1) {// 그냥 계산하면 됨.
-
+					for (int j = 0; j < A; j++) {
+						if (dupA[j]) {
+							Ans += bc[j][3];
+							break;
+						}
+						if (dupB[j]) {
+							Ans += bc[j][3];
+							break;
+						}
+					}
 				} else if (cnta == 1 && cntb == 1) {
+					for (int j = 0; j < A; j++) {
+						if (dupA[j] && dupB[j]) {
+							Ans += bc[j][3];
+							break;
+						} else {
+							if (dupA[j]) {
+								Ans += bc[j][3];
+							}
+							if (dupB[j]) {
+								Ans += bc[j][3];
+							}
+						}
+					}
 
 				} else {// 중복이 있을 수 있으니 체크 해서 값 넣어야 함.
+					int maxA = 0;
+					int maxB = 0;
+					int maxAc = 0;
+					int maxBc = 0;
+					for (int j = 0; j < A; j++) {
+						if (dupA[j]) {
+							if(maxA < bc[j][3]) maxAc = j;
+							maxA = Math.max(maxA, bc[j][3]);
+						}
+					}
 
+					for (int j = 0; j < A; j++) {
+						if (dupB[j]) {
+							if(maxB < bc[j][3]) maxBc = j;
+							maxB = Math.max(maxB, bc[j][3]);
+						}
+					}
+
+					if (maxA == maxB) {
+						if(maxAc != maxBc) {
+							Ans += maxA;
+							Ans += maxB;
+							continue;
+						}
+						
+						if (cnta >= 2 && cntb == 1) {
+							Ans += maxB;
+							int maxC = 0;
+							for (int j = 0; j < A; j++) {
+								if (dupA[j] && bc[j][3] != maxB) {
+									maxC = Math.max(maxC, bc[j][3]);
+								}
+							}
+							Ans += maxC;
+						} else if (cnta == 1 && cntb >= 2) {
+							Ans += maxA;
+							int maxC = 0;
+							for (int j = 0; j < A; j++) {
+								if (dupB[j] && bc[j][3] != maxA) {
+									maxC = Math.max(maxC, bc[j][3]);
+								}
+							}
+							Ans += maxC;
+						} else {// 둘다 2 이상이면
+							int maxAA = 0;
+							int maxBB = 0;
+							for (int j = 0; j < A; j++) {
+								if (dupA[j] && bc[j][3] != maxA) {
+									maxAA = Math.max(maxAA, bc[j][3]);
+								}
+							}
+							for (int j = 0; j < A; j++) {
+								if (dupB[j] && bc[j][3] != maxB) {
+									maxBB = Math.max(maxBB, bc[j][3]);
+								}
+							}
+
+							// 둘다 2이상일 때
+							if (maxAA > maxBB) {
+								Ans += maxAA;
+								Ans += maxB;
+							} else {
+								Ans += maxBB;
+								Ans += maxA;
+							}
+
+						}
+
+					} else {
+						Ans += maxA;
+						Ans += maxB;
+					}
 				}
 
 			}
 //			print(map);
-
+			System.out.printf("#%d %d\n", tc, Ans);
+			Ans = 0;
 		}
 
 	}

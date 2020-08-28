@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class NQueen {
-	static int T, N, map[][], numbers[], cnt;
+	static int T, N, numbers[], cnt;
 	static int[] dr = { 1, 1, -1, -1 }; // 4방(상하좌우는 안봐도됨).
 	static int[] dc = { 1, -1, 1, -1 };
 
@@ -16,7 +16,6 @@ public class NQueen {
 		for (int tc = 1; tc <= T; tc++) {
 			N = sc.nextInt();
 
-			map = new int[N][N];
 			numbers = new int[N];
 			boolean[] v = new boolean[N];
 
@@ -61,6 +60,10 @@ public class NQueen {
 			if (v[i])
 				continue;
 			numbers[idx] = i;
+			if (idx >= 1 && Math.abs(numbers[idx] - numbers[idx - 1]) == 1) {
+				v[i] = false;
+				continue;
+			}
 			v[i] = true;
 			nqueen(idx + 1, v);
 			v[i] = false;
