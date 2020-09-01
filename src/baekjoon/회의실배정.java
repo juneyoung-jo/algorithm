@@ -30,7 +30,6 @@ public class 회의실배정 {
 			return ret;
 		}
 
-
 	}
 
 	static class Time {

@@ -1,11 +1,8 @@
 package swexpertacademy;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
-public class 무선충전 { //정답은 맞는데 테케가 빡빡하면 틀릴수도?
+public class 무선충전 { // 정답은 맞는데 테케가 빡빡하면 틀릴수도?
 	static int T, M, A, Ans;
 	static int[][] map = new int[10][10];
 	static int[][] move, bc;
@@ -61,6 +58,7 @@ public class 무선충전 { //정답은 맞는데 테케가 빡빡하면 틀릴�
 
 			Point Aman = new Point(0, 0, 0);
 			Point Bman = new Point(9, 9, 0);
+
 			{
 				dupA = new boolean[A];
 				dupB = new boolean[A];
@@ -230,25 +228,27 @@ public class 무선충전 { //정답은 맞는데 테케가 빡빡하면 틀릴�
 					int maxBc = 0;
 					for (int j = 0; j < A; j++) {
 						if (dupA[j]) {
-							if(maxA < bc[j][3]) maxAc = j;
+							if (maxA < bc[j][3])
+								maxAc = j;
 							maxA = Math.max(maxA, bc[j][3]);
 						}
 					}
 
 					for (int j = 0; j < A; j++) {
 						if (dupB[j]) {
-							if(maxB < bc[j][3]) maxBc = j;
+							if (maxB < bc[j][3])
+								maxBc = j;
 							maxB = Math.max(maxB, bc[j][3]);
 						}
 					}
 
 					if (maxA == maxB) {
-						if(maxAc != maxBc) {
+						if (maxAc != maxBc) {
 							Ans += maxA;
 							Ans += maxB;
 							continue;
 						}
-						
+
 						if (cnta >= 2 && cntb == 1) {
 							Ans += maxB;
 							int maxC = 0;
