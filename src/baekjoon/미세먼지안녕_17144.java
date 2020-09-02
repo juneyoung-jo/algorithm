@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-import sun.nio.cs.ext.ISCII91;
-
 public class 미세먼지안녕_17144 {
 	static int R, C, T, map[][], Ans, arr[];
 	static int[] dr = { 1, -1, 0, 0 };
