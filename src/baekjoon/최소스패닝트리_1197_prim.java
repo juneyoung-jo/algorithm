@@ -45,7 +45,7 @@ public class 최소스패닝트리_1197_prim {
 
 		boolean[] v = new boolean[V + 1]; // 방문 체크
 		int[] dist = new int[V + 1]; // 결과 값 저장할 배열
-		Arrays.fill(dist, Integer.MAX_VALUE); // 작은 값을 저장하기 위해서 최대값으로 초기화
+		Arrays.fill(dist, Integer.MAX_VALUE); // 적은 값을 저장하기 위해서 최대값으로 초기화
 
 		dist[1] = 0; // 시작위치
 
@@ -53,7 +53,7 @@ public class 최소스패닝트리_1197_prim {
 			int minIdx = 0;
 			int minCnt = Integer.MAX_VALUE;
 
-			// 값이 가장 작은 정점 구하기
+			// 값이 가장 적은 정점 구하기
 			for (int j = 1; j < list.length; j++) {
 				if (dist[j] < minCnt && !v[j]) {
 					minIdx = j;

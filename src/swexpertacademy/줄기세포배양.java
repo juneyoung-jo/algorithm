@@ -58,7 +58,7 @@ public class 줄기세포배양 {
 
 			// 알고리즘
 			// 1. 새로운 맵을 만들어 기존맵을 중앙에 배치 ㅇㅇ
-			// 2. bfs를 사용하는데 Point 객체 만들어 r,c, cnt값 사용, 우선순위큐 사용해야할듯 값이 큰거 먼저 돌려야함
+			// 2. Point 객체 만들어 r,c, cnt값 사용, 우선순위큐 사용해야할듯 값이 큰거 먼저 돌려야함
 			// 3. 시간이 지남에 따라 값이 변경되기 때문에 3중포문(시간, 행, 열)
 			PriorityQueue<Point> q = new PriorityQueue<Point>();
 
@@ -77,7 +77,7 @@ public class 줄기세포배양 {
 					}
 				}
 				while (!q.isEmpty()) {
-					dfs(q.poll()); // 우선순위 큐를 사용한 dfs => 깊이가 1임.
+					bfs(q.poll()); // 상 하 좌 우 계산 -> 깊이 1
 				}
 			}
 
@@ -99,7 +99,7 @@ public class 줄기세포배양 {
 		}
 	}
 
-	private static void dfs(Point p) {
+	private static void bfs(Point p) {
 		v[p.r][p.c] = true;
 
 		for (int k = 0; k < 4; k++) {

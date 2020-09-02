@@ -40,7 +40,7 @@ public class 최소스패닝트리_1197_primPQ {
 			list[i] = new ArrayList<Point>();
 		}
 
-		// 인접 리스트 만들기
+		// 정점 리스트
 		for (int i = 0; i < E; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
 			int from = Integer.parseInt(st.nextToken());
@@ -51,24 +51,30 @@ public class 최소스패닝트리_1197_primPQ {
 		}
 
 		boolean[] v = new boolean[V + 1]; // 방문 체크
-		int[] dist = new int[V + 1]; // 결과 값 저장할 배열
+		int[] dist = new int[V + 1]; // 정점 도달 비용
 		PriorityQueue<Point> PQ = new PriorityQueue<Point>();
 		Arrays.fill(dist, Integer.MAX_VALUE); // 작은 값을 저장하기 위해서 최대값으로 초기화
 
 		dist[1] = 0; // 시작위치
+		int cnt  = 0;
 
 		PQ.add(new Point(1, dist[1]));
 		Point current = null;
+
 		while (!PQ.isEmpty()) {
 
 			// 값이 가장 작은 정점 구하기
 			current = PQ.poll();
+			if(v[current.to]) continue;
+			cnt++;
+			if(cnt == V) break;
+			
 
 			v[current.to] = true;
 			int size = list[current.to].size();
 
 			for (int j = 0; j < size; j++) {
-				if (!v[list[current.to].get(j).to] && list[current.to].get(j).cnt < dist[list[current.to].get(j).to]) {
+				if (!v[list[current.to].get(j).to] &&list[current.to].get(j).cnt < dist[list[current.to].get(j).to]) {
 					dist[list[current.to].get(j).to] = list[current.to].get(j).cnt;
 					PQ.add(new Point(list[current.to].get(j).to, dist[list[current.to].get(j).to]));
 				}
@@ -76,6 +82,7 @@ public class 최소스패닝트리_1197_primPQ {
 			}
 
 		}
+
 		int Ans = 0;
 		for (int i = 1; i < dist.length; i++) {
 			Ans += dist[i];

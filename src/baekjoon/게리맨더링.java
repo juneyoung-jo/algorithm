@@ -52,13 +52,13 @@ public class 게리맨더링 {
 			Blist = new ArrayList<Integer>();
 			for (int i = 0; i < v.length; i++) {
 				if (v[i])
-					Alist.add(i); // 선택된거
+					Alist.add(i); // 선택한 도시
 				else
-					Blist.add(i); // 선택 안 된거
+					Blist.add(i); // 선택 안 한 도시
 			}
-			// 각각 dfs를 돌려 연결되어있는지 확인 boolean값으로 반환
+			// 각각 bfs를 돌려 연결되어있는지 확인 boolean값으로 반환
 			// 둘다 true일 경우(즉, 둘다 연결이 되있는 경우) 결과값 계산
-			if (dfsA(v, Alist) && dfsB(v, Blist)) {
+			if (bfsA(v, Alist) && bfsB(v, Blist)) {
 				int A = 0;
 				int B = 0;
 				for (int i = 0; i < v.length; i++) {
@@ -82,7 +82,7 @@ public class 게리맨더링 {
 
 	}
 
-	private static boolean dfsB(boolean[] v, ArrayList<Integer> lst) {
+	private static boolean bfsB(boolean[] v, ArrayList<Integer> lst) {
 		check = new boolean[N];
 		Queue<Integer> q = new LinkedList<Integer>();
 		q.add(lst.get(0));
@@ -108,7 +108,7 @@ public class 게리맨더링 {
 		return true;
 	}
 
-	private static boolean dfsA(boolean[] v, ArrayList<Integer> lst) {
+	private static boolean bfsA(boolean[] v, ArrayList<Integer> lst) {
 		check = new boolean[N];
 		Queue<Integer> q = new LinkedList<Integer>();
 		q.add(lst.get(0));
