@@ -50,14 +50,14 @@ public class 해킹_10282 {
 				int cnt = Integer.parseInt(st.nextToken());
 				list[to].add(new Point(from, cnt));
 			}
-			
-			//방향이 있는 다익스트라 문제
+
+			// 방향이 있는 다익스트라 문제
 
 			int[] dis = new int[n + 1];
 			boolean[] v = new boolean[n + 1];
 			Arrays.fill(dis, Integer.MAX_VALUE);
 			PriorityQueue<Point> pq = new PriorityQueue<Point>();
-			
+
 			dis[c] = 0;
 			pq.add(new Point(c, dis[c]));
 			Point current = null;
@@ -68,10 +68,13 @@ public class 해킹_10282 {
 
 				int size = list[current.to].size();
 				for (int i = 0; i < size; i++) {
-					if (!v[list[current.to].get(i).to]
-							&& list[current.to].get(i).cnt + current.cnt < dis[list[current.to].get(i).to]) {
-						dis[list[current.to].get(i).to] = list[current.to].get(i).cnt + current.cnt;
-						pq.add(new Point(list[current.to].get(i).to, dis[list[current.to].get(i).to]));
+
+					int e = list[current.to].get(i).to;
+					int cnt = list[current.to].get(i).cnt;
+
+					if (!v[e] && cnt + dis[current.to] < dis[e]) {
+						dis[e] = cnt + dis[current.to];
+						pq.add(new Point(e, dis[e]));
 					}
 
 				}

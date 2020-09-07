@@ -4,22 +4,21 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class 하나로 {
-	static int T, N, arr[][], parents[];
+public class 하나로_prim {
+	static int T, N, arr[][];
 	static double E;
 
 	static class Point implements Comparable<Point> {
-		int v;
-		int w;
+		int to;
 		long cost;
 
-		public Point(int v, int w, long cost) {
+		public Point(int v, long cost) {
 			super();
-			this.v = v;
-			this.w = w;
+			this.to = v;
 			this.cost = cost;
 		}
 
@@ -39,8 +38,11 @@ public class 하나로 {
 			N = Integer.parseInt(br.readLine());
 
 			arr = new int[N][2];
-			parents = new int[N];
-			ArrayList<Point> list = new ArrayList<Point>();
+			ArrayList<Point>[] list = new ArrayList[N];
+
+			for (int i = 0; i < list.length; i++) {
+				list[i] = new ArrayList<Point>();
+			}
 
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int i = 0; i < N; i++) { // x좌표 입력받기
@@ -52,32 +54,54 @@ public class 하나로 {
 			}
 
 			E = Double.parseDouble(br.readLine());
-			
-			//알고리즘
-			//크루스칼 알고리즘 최소신장트리 구하는 문제
-			//비용 계산하는게 관건임. 좌표로 잘 나와있으니 빼서 제곱해서 구하면 됨.
+
+			// 알고리즘
+			// 프림 알고리즘 최소신장트리 구하는 문제
+			// 비용 계산하는게 관건임. 좌표로 잘 나와있으니 빼서 제곱해서 구하면 됨.
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
-					list.add(new Point(i, j, (long) Math.pow(Math.abs(arr[i][0] - arr[j][0]), 2)
+					list[i].add(new Point(j, (long) Math.pow(Math.abs(arr[i][0] - arr[j][0]), 2)
 							+ (long) Math.pow(Math.abs(arr[i][1] - arr[j][1]), 2)));
 				}
 			}
 
-			// parents초기화
-			makeSet(parents);
-			Collections.sort(list);
+			long[] dist = new long[N];
+			boolean[] v = new boolean[N];
 
-			double Ans = 0;
+			PriorityQueue<Point> pq = new PriorityQueue<Point>();
+			Arrays.fill(dist, Long.MAX_VALUE);
+
+			dist[0] = 0;
+			pq.add(new Point(0, dist[0]));
 			int cnt = 0;
-			for (Point lists : list) {
-				if (union(lists.v, lists.w)) {
-					Ans += lists.cost;
-					if (++cnt == N - 1) {
-						break;
-					}
 
+			Point current = null;
+			while (!pq.isEmpty()) {
+				current = pq.poll();
+				if (v[current.to]) {
+					continue;
+				}
+				cnt++;
+				if (cnt == N) {
+					break;
 				}
 
+				v[current.to] = true;
+				int size = list[current.to].size();
+				for (int i = 0; i < size; i++) {
+					if (!v[list[current.to].get(i).to]
+							&& list[current.to].get(i).cost < dist[list[current.to].get(i).to]) {
+						dist[list[current.to].get(i).to] = list[current.to].get(i).cost;
+						pq.add(new Point(list[current.to].get(i).to, dist[list[current.to].get(i).to]));
+					}
+				}
+
+			}
+
+			long Ans = 0;
+
+			for (Long l : dist) {
+				Ans += l;
 			}
 
 			System.out.printf("#%d %d\n", tc, (long) Math.round(Ans * E));
@@ -85,32 +109,6 @@ public class 하나로 {
 //			print(arr);
 
 		}
-	}
-
-	private static boolean union(int x, int y) {
-		int xx = find(x);
-		int yy = find(y);
-
-		if (xx == yy)
-			return false;
-		parents[yy] = xx;
-		return true;
-	}
-
-	private static int find(int x) {
-		if (parents[x] == x) {
-			return x;
-		}
-		return parents[x] = find(parents[x]);
-
-	}
-
-	private static void makeSet(int[] parents) {
-
-		for (int i = 0; i < parents.length; i++) {
-			parents[i] = i;
-		}
-
 	}
 
 //	private static void print(int[][] arr) {

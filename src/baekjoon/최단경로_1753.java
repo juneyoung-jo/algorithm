@@ -32,8 +32,8 @@ public class 최단경로_1753 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-		V = Integer.parseInt(st.nextToken());
-		E = Integer.parseInt(st.nextToken());
+		V = Integer.parseInt(st.nextToken()); // 정점
+		E = Integer.parseInt(st.nextToken()); // 간선
 		start = Integer.parseInt(br.readLine());
 
 		list = new ArrayList[V + 1];
@@ -41,6 +41,7 @@ public class 최단경로_1753 {
 			list[i] = new ArrayList<Point>();
 		}
 
+		// 인접 리스트 만들기
 		for (int i = 0; i < E; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
 			int from = Integer.parseInt(st.nextToken());
@@ -49,11 +50,11 @@ public class 최단경로_1753 {
 			list[from].add(new Point(to, cnt));
 		}
 
-		int[] dis = new int[V + 1];
-		boolean[] v = new boolean[V + 1];
-		PriorityQueue<Point> pq = new PriorityQueue<Point>();
-		Arrays.fill(dis, Integer.MAX_VALUE);
-		dis[start] = 0;
+		int[] dis = new int[V + 1]; // 최소값을 저장할 배열
+		boolean[] v = new boolean[V + 1]; // 방문 배열
+		PriorityQueue<Point> pq = new PriorityQueue<Point>(); // 최소값을 찾기 위해 우선순위 큐 사용
+		Arrays.fill(dis, Integer.MAX_VALUE); // 최소값을 찾아야 하기 때문에 큰 값으로 초기화
+		dis[start] = 0; // 시작점
 
 		pq.add(new Point(start, dis[start]));
 		Point current = null;
@@ -63,10 +64,13 @@ public class 최단경로_1753 {
 			v[current.to] = true;
 			int size = list[current.to].size();
 			for (int i = 0; i < size; i++) {
-				if (!v[list[current.to].get(i).to]
-						&& current.cnt + list[current.to].get(i).cnt < dis[list[current.to].get(i).to]) {
-					dis[list[current.to].get(i).to] = current.cnt + list[current.to].get(i).cnt;
-					pq.add(new Point(list[current.to].get(i).to, dis[list[current.to].get(i).to]));
+
+				int e = list[current.to].get(i).to;
+				int cnt = list[current.to].get(i).cnt;
+
+				if (!v[e] && dis[current.to] + cnt < dis[e]) {
+					dis[e] = dis[current.to] + cnt;
+					pq.add(new Point(e, dis[e]));
 				}
 			}
 
