@@ -1,10 +1,6 @@
 package baekjoon;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
-
-import baekjoon.유기농배추.Point;
 
 public class 미로탐색2bfs2 {
 	static int N, M, map[][];
