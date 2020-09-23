@@ -22,7 +22,7 @@ public class 수제버거장인 {
 					arr[i][j] = sc.nextInt();
 				}
 			}
-
+			
 //			print(arr);
 
 			powerSet(1);
