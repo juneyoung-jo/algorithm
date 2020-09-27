@@ -15,11 +15,11 @@ public class 일곱난쟁이 {
 			arr[i] = sc.nextInt();
 		}
 
-		permutation(0, 0);
+		combination(0, 0);
 
 	}
 
-	private static void permutation(int idx, int start) {
+	private static void combination(int idx, int start) {
 		if (idx == numbers.length) {
 			sum = 0;
 			for (int i = 0; i < numbers.length; i++) {
@@ -37,7 +37,7 @@ public class 일곱난쟁이 {
 
 		for (int i = start; i < arr.length; i++) {
 			numbers[idx] = arr[i];
-			permutation(idx + 1, i + 1);
+			combination(idx + 1, i + 1);
 		}
 
 	}
