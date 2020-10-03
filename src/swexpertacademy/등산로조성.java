@@ -43,17 +43,16 @@ public class 등산로조성 {
 				}
 			}
 
-//			for (int r = 0; r < N; r++) {
-//				for (int c = 0; c < N; c++) {
-//					if (map[r][c] == max) {
-//						dfs(new Point(r, c, 1, K, max), new boolean[N][N]);
-//					}
-//				}
-//			}
-			
-			dfs(new Point(2, 4, 1, K, max), new boolean[N][N]);
+			for (int r = 0; r < N; r++) {
+				for (int c = 0; c < N; c++) {
+					if (map[r][c] == max) {
+						dfs(new Point(r, c, 1, K, 1), new boolean[N][N]);
+					}
+				}
+			}
 
-			System.out.println(ans);
+			System.out.printf("#%d %d\n", tc, ans);
+			ans = 0;
 //			print(map);
 		}
 
@@ -62,10 +61,6 @@ public class 등산로조성 {
 	private static void dfs(Point point, boolean[][] v) {
 		Point p = point;
 		v[p.r][p.c] = true;
-		if(p.point  < 0) {
-			ans = Math.max(ans, p.cnt-1);
-			return;
-		}
 
 		for (int k = 0; k < 4; k++) {
 			int nr = p.r + dr[k];
@@ -74,17 +69,19 @@ public class 등산로조성 {
 			// 테두리체크
 			if (nr < 0 || nc < 0 || nr >= N || nc >= N || v[nr][nc])
 				continue;
-			if (map[nr][nc] >= p.cost)
-				continue;
-			// 작은곳 탐색
-			dfs(new Point(nr, nc, p.cnt + 1, p.point, map[nr][nc]), v);
 
-			if (map[nr][nc] - p.point < p.cost) {
-				int pnt = map[nr][nc] - p.cost + 1;
-					dfs(new Point(nr, nc, p.cnt + 1, p.point - pnt, map[nr][nc]), v);
+			if (map[nr][nc] < map[p.r][p.c]) {
+				dfs(new Point(nr, nc, p.cnt + 1, p.point, p.cost), v);
 			}
-			v[nr][nc] = false;
+
+			if (map[nr][nc] >= map[p.r][p.c] && p.cost == 1 && map[nr][nc] - p.point < map[p.r][p.c]) {
+				int num = map[nr][nc] - map[p.r][p.c] + 1;
+				map[nr][nc] -= num;
+				dfs(new Point(nr, nc, p.cnt + 1, p.point - num, 0), v);
+				map[nr][nc] += num;
+			}
 		}
+		v[p.r][p.c] = false;
 
 		ans = Math.max(ans, p.cnt);
 
