@@ -8,8 +8,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class 숫자만들기 {
-	static int T, N, number[], oper[], min = Integer.MAX_VALUE, max, ans, count;
-	static ArrayList<Integer> list;
+	static int T, N, number[], operator[], oper[], min, max, count;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,17 +16,17 @@ public class 숫자만들기 {
 
 		for (int tc = 1; tc <= T; tc++) {
 
+			min = Integer.MAX_VALUE;
+			max = -100000001;
+
 			N = Integer.parseInt(br.readLine());
 			number = new int[N];
 			oper = new int[N - 1];
-			list = new ArrayList<Integer>();
+			operator = new int[4];
 
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int i = 0; i < 4; i++) {
-				int n = Integer.parseInt(st.nextToken());
-				for (int j = 0; j < n; j++) {
-					list.add(i);
-				}
+				operator[i] = Integer.parseInt(st.nextToken());
 			}
 
 			st = new StringTokenizer(br.readLine());
@@ -35,55 +34,50 @@ public class 숫자만들기 {
 				number[i] = Integer.parseInt(st.nextToken());
 			}
 
-			Permutation(0, new boolean[N - 1]);
-			System.out.printf("#%d %d\n", tc, ans);
+			Permutation(0);
+			System.out.printf("#%d %d\n", tc, max - min);
 
-			ans = 0;
-			min = Integer.MAX_VALUE;
-			max = 0;
-
-			System.out.println(count);
 		}
 
 	}
 
-	private static void Permutation(int idx, boolean[] v) {
+	private static void Permutation(int idx) {
 		if (idx == N - 1) {
-			count++;
 			int cal = number[0];
-			for (int i = 1; i < N; i++) {
-				int n = list.get(oper[i - 1]);
-				switch (n) {
+			int[] arr = new int[4];
+
+			for (int i = 0; i < oper.length; i++) {
+				arr[oper[i]] += 1;
+			}
+
+			if (!Arrays.equals(arr, operator))
+				return;
+
+			for (int i = 0; i < oper.length; i++) {
+				switch (oper[i]) {
 				case 0:
-					cal += number[i];
+					cal += number[i + 1];
 					break;
 				case 1:
-					cal -= number[i];
+					cal -= number[i + 1];
 					break;
 				case 2:
-					cal *= number[i];
+					cal *= number[i + 1];
 					break;
 				case 3:
-					cal /= number[i];
+					cal /= number[i + 1];
 					break;
 				}
 			}
 
 			min = Math.min(min, cal);
 			max = Math.max(max, cal);
-
-			ans = Math.abs(max - min);
-
 			return;
 		}
 
-		for (int i = 0; i < N - 1; i++) {
-			if (v[i])
-				continue;
-			v[i] = true;
+		for (int i = 0; i < 4; i++) {
 			oper[idx] = i;
-			Permutation(idx + 1, v);
-			v[i] = false;
+			Permutation(idx + 1);
 		}
 
 	}
