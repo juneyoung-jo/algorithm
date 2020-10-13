@@ -27,6 +27,7 @@ public class 백도어_17396 {
 		}
 		
 	}
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -62,8 +63,8 @@ public class 백도어_17396 {
 		}
 		
 		sight[N-1] = 0; // 넥서스 위치는 0으로 갈 수 있게 바꿔줘야함.
-		//다익스트라
-		//중복체크배열
+		// 다익스트라
+		// 중복체크배열
 		boolean[] v = new boolean[N];
 		long[] dist = new long[N];
 		Arrays.fill(dist, Long.MAX_VALUE);
@@ -73,6 +74,7 @@ public class 백도어_17396 {
 		pq.add(new Point(start, dist[start]));
 		
 		Point p = null;
+		
 		while (!pq.isEmpty()) {
 			p = pq.poll();
 			

@@ -18,9 +18,11 @@ public class 완주하지못한선수 {
 			}
 		}
 		
+		
 		for (int i = 0; i < completion.length; i++) {
 			map.put(completion[i],map.get(completion[i])+1);
 		}
+		
 		
 		String ans = "";
 		for (String string : map.keySet()) {
