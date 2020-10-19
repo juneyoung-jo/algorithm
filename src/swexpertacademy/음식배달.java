@@ -78,6 +78,7 @@ public class 음식배달 {
 					}
 				}
 				sum += st;
+				if(sum > ans) return; // 가지치기
 			}
 			if(sum==0 || sum<0) return;
 			for (int j = 0; j < v.length; j++) {
