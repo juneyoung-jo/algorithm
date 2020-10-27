@@ -35,8 +35,8 @@ public class 치즈_2636 {
 
 	private static void cal(int idx) {
 
-		int sum = 0;
-		int cnt = 0;
+		int sum = 0; //녹은 치즈
+		int cnt = 0; //0의 개수   
 		boolean[][] v= new boolean[N][M];
 		
 		dfs(0,0,v);
@@ -64,7 +64,8 @@ public class 치즈_2636 {
 			}
 		}
 		
-		if(cnt == N*M) {
+		//기저 조건 -> 0의 개수가 맵의 크기랑 같으면 전부 다 제거된 경우임.
+		if(cnt == N*M) { 
 			time = idx;
 			ans = sum;
 			return;
