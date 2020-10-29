@@ -47,7 +47,7 @@ public class 보급로 {
 			}
 
 			// 알고리즘
-			// dfs는 100x100이라 불가능 할듯
+			// dfs는 100x100, 백트래킹이라 불가능할거같음.
 			// bfs로 풀어야 하는데 최단거리가 아닌 값이 가장 작은 수를 구해야 함.
 			// 값을 더해가면서 저장하는데 값이 가장 작은 것부터 계속 더해 나가야 하기 때문에
 			// 우선순위 큐를 사용하여 더한 값이 작은 순으로 실행.
@@ -85,17 +85,8 @@ public class 보급로 {
 				if (v[nr][nc]) // 방문 배열 체크
 					continue;
 
-				if (map[nr][nc] == 0) { // 0일때를 먼저 넣고 실행해야 값이 가장 적은 것임.
-					q.add(new Point(nr, nc, p.cnt + map[nr][nc]));
-					v[nr][nc] = true;
-
-				}
-
-				if (map[nr][nc] != 0) { // 0이 아닐때는 그냥 다 넣어줌
-					q.add(new Point(nr, nc, p.cnt + map[nr][nc]));
-					v[nr][nc] = true;
-
-				}
+				q.add(new Point(nr, nc, p.cnt + map[nr][nc]));
+				v[nr][nc] = true;
 
 			}
 
