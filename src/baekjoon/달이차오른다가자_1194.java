@@ -83,7 +83,6 @@ public class 달이차오른다가자_1194 {
 				if (map[nr][nc] == 'a' || map[nr][nc] == 'b' || map[nr][nc] == 'c' || map[nr][nc] == 'd'
 						|| map[nr][nc] == 'e' || map[nr][nc] == 'f') {
 					
-					//먹기전에 비트연산해서 없을때만 먹어야 함.
 					if ((1 << (map[nr][nc] - 'a')) != ((1 << (map[nr][nc] - 'a')) & p.bit)){
 						v[p.bit][nr][nc] = true;
 						v[p.bit + (1 << (map[nr][nc] - 'a'))][nr][nc] = true;
