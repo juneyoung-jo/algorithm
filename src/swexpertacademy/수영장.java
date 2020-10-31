@@ -28,17 +28,24 @@ public class 수영장 {
 			}
 
 			ans = Integer.MAX_VALUE;
-			cal(0,0);
-			System.out.println(ans);
+			cal(0, 0);
+			System.out.printf("#%d %d\n", tc, ans > cost[3] ? cost[3] : ans);
 
 		}
 
 	}
 
 	private static void cal(int idx, int sum) {
-		// TODO Auto-generated method stub
-			
-		
+		if (idx >= 12) {
+			ans = Math.min(ans, sum);
+			return;
+		}
+		if(sum > ans) return;
+
+		cal(idx + 1, sum + cost[0] * arr[idx]);
+		cal(idx + 1, sum + cost[1]);
+		cal(idx + 3, sum + cost[2]);
+
 	}
 
 }
