@@ -50,11 +50,6 @@ public class 무선충전 { // 정답은 맞는데 테케가 빡빡하면 틀릴
 				}
 			}
 
-			// 배터리공간 표시하기
-//			v = new boolean[10][10];
-//			for (int i = 0; i < A; i++) {
-//				bfs(new Point(bc[i][1] - 1, bc[i][0] - 1, bc[i][2]));
-//			}
 
 			Point Aman = new Point(0, 0, 0);
 			Point Bman = new Point(9, 9, 0);
@@ -314,28 +309,6 @@ public class 무선충전 { // 정답은 맞는데 테케가 빡빡하면 틀릴
 		}
 	}
 
-//	private static void bfs(Point point) {
-//		Queue<Point> q = new LinkedList<Point>();
-//		q.add(point);
-//		v[point.r][point.c] = true;
-//		map[point.r][point.c] = 1;
-//
-//		while (!q.isEmpty()) {
-//			Point p = q.poll();
-//
-//			for (int k = 1; k < 5; k++) {
-//				int nr = p.r + dr[k];
-//				int nc = p.c + dc[k];
-//
-//				if (nr >= 0 && nc >= 0 && nr < 10 && nc < 10 && !v[nr][nc] && map[nr][nc] == 0 && p.cnt > 0) {
-//					q.add(new Point(nr, nc, p.cnt - 1));
-//					v[nr][nc] = true;
-//					map[nr][nc] = 1;
-//				}
-//			}
-//
-//		}
-//	}
 
 	private static void print(int[][] move) {
 		// TODO Auto-generated method stub
