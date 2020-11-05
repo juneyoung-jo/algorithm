@@ -53,6 +53,7 @@ public class 스도쿠_2239 {
 					}
 					copyMap[r][c] = 0;
 				}
+				return;
 			}
 
 		}

@@ -43,7 +43,7 @@ public class 벌꿀채취 {
 					sum = max;
 
 					// B일꾼 -> A일꾼이 일한 곳 제외.
-					for (int i = 0; i < N; i++) {
+					for (int i = r; i < N; i++) {
 						for (int j = 0; j <= N - M; j++) {
 //							if(i==r) continue;
 							if (i == r && (!check(j, c) || !check(c, j)))
