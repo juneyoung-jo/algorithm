@@ -98,6 +98,8 @@ public class 낚시왕_17143 {
 				c += dc[d];
 
 				if (r < 1 || c < 1 || r >= R + 1 || c >= C + 1) {
+					r -= dr[d];
+					c -= dc[d];
 					d = calDir(d);
 					k-=1;
 					continue;
