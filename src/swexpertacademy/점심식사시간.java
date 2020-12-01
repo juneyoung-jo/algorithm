@@ -123,6 +123,7 @@ public class 점심식사시간 {
 		for (int i = start; i <= end; i++) {
 			if (q.size() < 3) {
 				q.add(time[i] + holelist.get(idx).cnt);
+			
 			} else {
 				n = q.poll();
 				if (n > time[i]) {
