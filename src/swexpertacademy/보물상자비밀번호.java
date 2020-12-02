@@ -66,7 +66,8 @@ public class 보물상자비밀번호 {
 			}
 			Collections.sort(list); //정렬
 			Collections.reverse(list); //역순 정렬
-
+			
+			
 			System.out.printf("#%d %d\n", tc, list.get(K - 1));
 		}
 
