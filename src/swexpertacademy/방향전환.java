@@ -20,9 +20,9 @@ public class 방향전환 {
 			int sY = Math.abs(Y - y);
 
 			int ans = 0;
-			
+
 			if (X == x && Y == y) {
-				System.out.printf("#%d %d\n",tc,ans);
+				System.out.printf("#%d %d\n", tc, ans);
 				continue;
 			}
 
@@ -81,8 +81,8 @@ public class 방향전환 {
 				}
 
 			}
-			
-			System.out.printf("#%d %d\n",tc,ans);
+
+			System.out.printf("#%d %d\n", tc, ans);
 
 		}
 
