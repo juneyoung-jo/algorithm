@@ -18,10 +18,10 @@ public class 햄스터 {
 			X = Integer.parseInt(st.nextToken());
 			M = Integer.parseInt(st.nextToken());
 
-			arr = new int[M][3];
-			ans = new int[N];
-			ansArr = new int[N];
-			max = -1;
+			arr = new int[M][3]; // 조건
+			ans = new int[N]; // 재귀로 얻을 배열
+			ansArr = new int[N]; // 결과값
+			max = -1; // 배열의 합 최대 저장. 
 
 			for (int i = 0; i < M; i++) {
 				st = new StringTokenizer(br.readLine(), " ");
