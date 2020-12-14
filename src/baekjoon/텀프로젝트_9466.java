@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class 텀프로젝트_9466 {
 	static int T, n, arr[], ans, vNum[];
-	static boolean  v[];
+	static boolean v[];
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,7 +18,7 @@ public class 텀프로젝트_9466 {
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 			arr = new int[n + 1];
 			v = new boolean[n + 1];
-			vNum = new int[n+1];
+			vNum = new int[n + 1];
 			ans = 0;
 
 			for (int i = 1; i <= n; i++) {
@@ -45,7 +45,7 @@ public class 텀프로젝트_9466 {
 			dfs(arr[start], cnt + 1);
 		} else {
 			if (vNum[arr[start]] != 0) {
-				ans += (cnt - vNum[arr[start]]+1);
+				ans += (cnt - vNum[arr[start]] + 1);
 			}
 		}
 		vNum[start] = 0;
