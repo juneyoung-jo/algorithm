@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class 연결요소의개수_11724 {
+
 	static int N, M, ans;
 	static boolean[] v;
 	static ArrayList<Integer>[] list;
@@ -20,9 +21,9 @@ public class 연결요소의개수_11724 {
 		M = Integer.parseInt(st.nextToken());
 		list = new ArrayList[N + 1];
 		v = new boolean[N + 1];
+
 		for (int i = 0; i <= N; i++) {
 			list[i] = new ArrayList<Integer>();
-
 		}
 
 		int start, end;
@@ -43,6 +44,7 @@ public class 연결요소의개수_11724 {
 		}
 
 		System.out.println(ans);
+
 	}
 
 	private static void dfs(int idx) {
@@ -52,9 +54,7 @@ public class 연결요소의개수_11724 {
 			if (!v[list[idx].get(i)]) {
 				dfs(list[idx].get(i));
 			}
-
 		}
-
 	}
 
 }
