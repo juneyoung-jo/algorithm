@@ -39,14 +39,12 @@ public class 컨베이어벨트_20055 {
 
 		while (true) {
 			ans++;
+			moveC();
+			moveR();
 			if (uArr[0] > 0) {
 				uArr[0]--;
 				v[0] = true;
 			}
-
-			moveC();
-
-			moveR();
 
 			if (check())
 				return;
@@ -60,7 +58,7 @@ public class 컨베이어벨트_20055 {
 		v[N - 1] = false;
 		for (int i = N - 2; i >= 0; i--) {
 			if (v[i]) {
-				if (uArr[i + 1] > 0 && !v[i+1]) {
+				if (uArr[i + 1] > 0 && !v[i + 1]) {
 					v[i] = false;
 					v[i + 1] = true;
 					uArr[i + 1]--;
@@ -77,9 +75,11 @@ public class 컨베이어벨트_20055 {
 		// 위
 		for (int i = N - 2; i >= 0; i--) {
 			uArr[i + 1] = uArr[i];
+			v[i + 1] = v[i];
 		}
 
 		uArr[0] = dTmp;
+		v[0] = false;
 
 		// 아래
 		for (int i = 1; i < N; i++) {
@@ -100,7 +100,7 @@ public class 컨베이어벨트_20055 {
 				cnt++;
 		}
 
-		if (cnt == K)
+		if (cnt >= K)
 			return true;
 
 		return false;
