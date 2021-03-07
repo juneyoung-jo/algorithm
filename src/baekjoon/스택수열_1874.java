@@ -20,7 +20,7 @@ public class 스택수열_1874 {
 			arr[i] = Integer.parseInt(br.readLine());
 		}
 
-		// 알고리즘
+		// 알고리즘 
 		cal();
 
 		System.out.println(st.size() == 0 ? sb.substring(0,sb.length()-1):"NO");
