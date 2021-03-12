@@ -72,12 +72,12 @@ public class 주사위굴리기_14499 {
 
 		if (map[nr][nc] == 0) {
 			map[nr][nc] = dice[0];
-			System.out.println(dice[5]);
 		}else {
 			dice[0] = map[nr][nc];
 			map[nr][nc] = 0;
-			System.out.println(dice[5]);
 		}
+		
+		System.out.println(dice[5]);
 		
 		x= nr;
 		y= nc;
