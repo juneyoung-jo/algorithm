@@ -54,9 +54,9 @@ public class 행성연결_16398_kruskal {
 				list.add(new Point(i, j, num));
 			}
 		}
-		
+
 		makeSet(parents);
-		
+
 		Collections.sort(list);
 		int cnt = 0;
 		long ans = 0;
