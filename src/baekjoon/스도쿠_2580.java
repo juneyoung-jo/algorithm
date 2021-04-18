@@ -19,6 +19,8 @@ public class 스도쿠_2580 {
 			}
 		}
 		
+		cal()
+		
 		
 
 	}
