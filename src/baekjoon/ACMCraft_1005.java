@@ -6,15 +6,6 @@ import java.io.*;
 public class ACMCraft_1005 {
 	static int T, N, K, X, Y, W, D, cost[], arr[];
 
-//	static class Point {
-//		int e, cnt;
-//
-//		public Point(int e, int cnt) {
-//			this.e = e;
-//			this.cnt = cnt;
-//		}
-//
-//	}
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
