@@ -29,39 +29,26 @@ public class 색종이만들기_2630 {
 	}
 
 	private static void div(int idx, int r, int c, int size) {
-		boolean isOkB = true;
-		boolean isOkW = true;
-		L: for (int i = r; i < r + size; i++) {
+//		boolean isOkB = true;
+//		boolean isOkW = true;
+		int sum = 0;
+		for (int i = r; i < r + size; i++) {
 			for (int j = c; j < c + size; j++) {
-				if (map[i][j] != 1) {
-					isOkB = false;
-					break L;
-				}
+				sum += map[i][j];
 			}
 		}
 
-		L: for (int i = r; i < r + size; i++) {
-			for (int j = c; j < c + size; j++) {
-				if (map[i][j] != 0) {
-					isOkW = false;
-					break L;
-				}
-			}
-		}
-		if (isOkB) {
+		if (sum == size*size) {
 			AnsB++;
-			return;
-		}
-		if (isOkW) {
+		}else if(sum==0) {
 			AnsW++;
-			return;
+		}else {
+			int num = size / 2;
+			div(idx + 1, r, c, num);
+			div(idx + 1, r, c + num, num);
+			div(idx + 1, r + num, c, num);
+			div(idx + 1, r + num, c + num, num);
 		}
-
-		int num = size / 2;
-		div(idx + 1, r, c, num);
-		div(idx + 1, r, c + num, num);
-		div(idx + 1, r + num, c, num);
-		div(idx + 1, r + num, c + num, num);
 	}
 
 	private static void print(int[][] map) {
