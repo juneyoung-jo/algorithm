@@ -58,6 +58,8 @@ public class 전깃줄2_2568 {
 				++size;
 			}
 			
+			
+			
 		}
 		
 //		for(int i = size; i < N;i++) {
