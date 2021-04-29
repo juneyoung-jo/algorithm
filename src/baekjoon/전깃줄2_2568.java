@@ -60,10 +60,6 @@ public class 전깃줄2_2568 {
 			
 		}
 		
-//		for(int i = size; i < N;i++) {
-//			v[index[i]] = false;
-//		}
-		
 		for(int i = 1; i < v.length;i++) {
 			if(v[i]) sb.append(i+"\n");
 		}
