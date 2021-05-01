@@ -48,6 +48,7 @@ public class ACMCraft_1005 {
 				}
 
 			}
+			
 			while (!q.isEmpty()) {
 				int p = q.poll();
 
