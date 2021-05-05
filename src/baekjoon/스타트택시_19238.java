@@ -118,7 +118,7 @@ public class 스타트택시_19238 {
 		Point men = minDist(taxiR, taxiC, G);
 		if(men == null) break; // 가스 고갈로 손님을 못태울 때
 		
-		// 2. 손님 태우고 도착지로 출발~
+		// 2. 손님 태우고 도착지로 출발
 		Point s = go(men);
 		if(s == null) break;
 		}
