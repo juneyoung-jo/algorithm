@@ -8,6 +8,7 @@ public class BinarySearch {
 
 		// 정렬
 		Arrays.sort(arr);
+		
 
 		int m = 8;
 		// 이분탐색

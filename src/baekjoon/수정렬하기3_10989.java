@@ -23,6 +23,7 @@ public class 수정렬하기3_10989 {
 			}
 		}
 		
+		
 		br.close();
 		bw.close();
 	}
