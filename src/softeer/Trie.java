@@ -30,7 +30,6 @@ public class Trie {
 				return false;
 			}
 
-			
 			thisNode = node;
 		}
 
