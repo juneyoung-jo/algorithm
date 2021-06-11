@@ -60,6 +60,7 @@ public class 빙산_2574 {
 			}else if(count == 0) {
 				break;
 			}
+			
 			go(); // 빙산 녹이기
 			ans++;
 		}
