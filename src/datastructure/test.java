@@ -2,16 +2,22 @@ package datastructure;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class test {
 	
 	public static void main(String[] args) {
 		
 		List<Integer> arr = new LinkedList<>();
+		PriorityQueue<Integer> q = new PriorityQueue<Integer>((o1,o2) -> o2-o1);
 		
-		arr.add(1);
-		arr.add(2);
-		arr.add(3);
+		q.add(1);
+		q.add(2);
+		q.add(3);
+		
+		System.out.println(q.peek());
+		
+		
 		
 //		System.out.println(arr.);
 		
