@@ -3,23 +3,20 @@ package programmers;
 import java.util.*;
 
 public class 보석쇼핑 {
-	static int arr[], v[];
-	static Set<String> set = new HashSet<>();
+	static int arr[], v[],size;
 	static Map<String, Integer> map = new HashMap<>();
 
 	public static void main(String[] args) {
-		String[] gems = { "XYZ", "XYZ", "XYZ" };
+		String[] gems = {"A", "B", "A", "A", "A", "C", "A", "B"};
 		System.out.println(Arrays.toString(solution(gems)));
 	}
 
 	public static int[] solution(String[] gems) {
 
-		  
-        int size = 0;
+//        int size = 0;
         arr = new int[gems.length];
 		
-        for (String str : gems) set.add(str);
-		for (String str : set) map.put(str, size++);
+		for (String str : gems) map.computeIfAbsent(str, key -> size++);
 		for (int i = 0; i < gems.length; i++) arr[i] = map.get(gems[i]);
         
         v = new int[size];
