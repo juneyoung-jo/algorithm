@@ -20,6 +20,7 @@ public class boj2의멱수의합_2410 {
 			else dp[i] = dp[i - 1];
 		}
 		
+		
 		System.out.println(dp[N]);
 
 	}
