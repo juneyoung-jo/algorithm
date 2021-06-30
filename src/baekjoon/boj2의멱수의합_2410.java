@@ -19,6 +19,7 @@ public class boj2의멱수의합_2410 {
 			if (i % 2 == 0) dp[i] = (dp[i - 1] + dp[i / 2]) % DIV;
 			else dp[i] = dp[i - 1];
 		}
+		
 
 		System.out.println(dp[N]);
 
