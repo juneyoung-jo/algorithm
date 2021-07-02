@@ -5,7 +5,7 @@ import java.io.*;
 
 public class 문자열폭발_9935 {
 
-	static String str, boom;
+	static String str, bomb;
 	static int size;
 	static Map<Character, Integer> v = new HashMap<>();
 	static Stack<Character> st = new Stack<>();
@@ -15,14 +15,14 @@ public class 문자열폭발_9935 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		str = br.readLine();
-		boom = br.readLine();
+		bomb = br.readLine();
 		
 		for (int i = 0; i < str.length(); i++) {
 			deq.add(str.charAt(i));
 		}
 		
-		for (int i = 0; i < boom.length(); i++) {
-			v.putIfAbsent(boom.charAt(i),size++);
+		for (int i = 0; i < bomb.length(); i++) {
+			v.putIfAbsent(bomb.charAt(i),size++);
 		}
 
 		int cnt = 0;
