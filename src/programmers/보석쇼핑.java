@@ -20,7 +20,6 @@ public class 보석쇼핑 {
 		for (int i = 0; i < gems.length; i++) arr[i] = map.get(gems[i]);
         
         v = new int[size];
-		
 		int vSize = 0;
 		int ansSize = gems.length;
 		int right = arr.length - 1;
