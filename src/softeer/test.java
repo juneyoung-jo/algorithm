@@ -35,6 +35,8 @@ public class test {
 		cal(test5);
 		int[] test6 = { 8, 6, 5, 7, 10 }; // [4, 0, 1, 4, -1]
 		cal(test6);
+		int[] test7 = { 5, 4, 4, 4, 4, 6 }; // [5, 0, 0, 5, 5, -1]
+		cal(test7);
 
 	}
 
