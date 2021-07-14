@@ -3,36 +3,106 @@ import java.util.*;
 
 public class 표편집_2021카카오채용연계형인턴십 {
 	
-	static Stack<Integer> st = new Stack<>();    
+	static Stack<Point> st = new Stack<>();    
     public String solution(int n, int k, String[] cmd) {
-        StringBuilder sb = new StringBuilder();
+        Point p = new Point(0);
+        for(int i = 1; i < n; i++) {
+            p = p.add(new Point(i));
+        }
         
-        for(int i = 0; i < cmd.length; i++) {
-            int c = cmd[i].charAt(0);
-            if(c == 'Z'){
-                int idx = st.pop();
-                n++;
-                if(k >= idx) k++; 
-            }else if(c == 'C'){
-                st.push(k);
-                n--;
-                if(k == n) k -= 1;
+        // 현재 위치 찾기.
+        for(int i = n-1; i > k; i--) {
+            p = p.prev(); 
+        }
+        
+        // 알고리즘 시작
+        for(String str : cmd){
+            char c = str.charAt(0);
+            if(c == 'U'){
+                int cnt = Integer.valueOf(str.substring(2));
+                for(int i = 0; i < cnt; i++) p = p.prev();
+            }else if( c == 'D'){
+                int cnt = Integer.valueOf(str.substring(2));
+                for(int i = 0; i < cnt; i++) p = p.next();
+            }else if( c == 'C') {
+                st.push(p);
+                p = p.delete();
+            }else  {
+                reset(st.pop());  
+            }
+        }
+        
+        boolean[] ans = new boolean[n];
+        while(!st.isEmpty()) {
+            ans[st.pop().n] = true;
+        }
+        
+        StringBuilder sb =  new StringBuilder();
+        for(int i = 0; i < ans.length; i++) {
+            if(ans[i]) sb.append('X');
+            else sb.append('O');
+        }
+        
+        return sb.toString();
+    
+    }
+    
+    public void reset(Point top) {
+         if(top.prev == null) {
+            // 0번 인덱스 
+            top.next.prev = top;
+         }else{
+             // 0번 인덱스 아닌경우
+            top.prev.next = top;
+            if(top.next != null) {
+                // 마지막 인덱스가 아닌 경우
+                top.next.prev = top;   
+            }
+         }
+    }
+    
+    static public class Point {
+        int n;
+        Point prev = null;
+        Point next = null;
+        
+        public Point(int n) {
+            this.n = n;
+        }
+        
+        public Point delete() {
+            // 0번 인덱스 일 때
+            if(prev == null) {
+                next.prev = null;
+                return next;
+            }
+            
+            // 0번 아닐 때
+            if(next == null) {
+                prev.next = null;
+                return prev;
             }else{
-                int num = Integer.valueOf(cmd[i].substring(2));
-                if(c == 'U') k -= num;
-                else k += num;
+                prev.next = next;
+                next.prev = prev;
+                return next;
             }
             
         }
         
-        for(int i = 0; i < n; i++) {
-            sb.append("O");
-        }
-        while(!st.isEmpty()){
-            sb.insert(st.pop(),"X");
+        public Point add(Point p) {
+            p.next = this.next;
+            p.prev = this;
+            this.next = p;
+            return p;
         }
         
-        return sb.toString();
+        public Point next(){
+            return this.next;
+        }
+        
+        public Point prev() {
+            return this.prev;
+        }
     }
 
 }
