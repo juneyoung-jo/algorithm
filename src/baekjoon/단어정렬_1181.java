@@ -13,8 +13,7 @@ public class 단어정렬_1181 {
 		arr = new String[N];
 		
 		for (int i = 0; i < N; i++) {
-			String str = br.readLine();
-			arr[i] = str;
+			arr[i] = br.readLine();
 		}
 		
 		StringBuilder sb = new StringBuilder();
