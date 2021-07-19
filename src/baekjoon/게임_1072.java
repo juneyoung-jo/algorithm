@@ -24,7 +24,6 @@ public class 게임_1072 {
 				} else {
 					start = mid + 1;
 				}
-				;
 			}
 		}
 
