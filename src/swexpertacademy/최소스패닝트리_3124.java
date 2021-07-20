@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
-import java.util.Scanner;
 import java.util.StringTokenizer;
-
-import org.omg.CORBA.INTERNAL;
 
 public class 최소스패닝트리_3124 {
 	static class Edge implements Comparable<Edge>{

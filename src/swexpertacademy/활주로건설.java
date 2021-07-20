@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-import sun.net.www.content.audio.basic;
-
 public class 활주로건설 {
 	static int T, N, X, map[][];
 	static boolean[] v;

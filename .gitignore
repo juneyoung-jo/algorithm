@@ -1,1 +1,11 @@
 /bin/
+
+# IntelliJ projet files
+.idea
+.idea/*.xml
+*.iml
+out
+gen
+build
+revel.xml
+
