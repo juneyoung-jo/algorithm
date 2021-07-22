@@ -23,12 +23,8 @@ public class 순위추천_2021KAKAO_BLIND_REC {
 
         int index = 0;
         for(String q : query) {
-            String[] queryItem = q.split("and");
+            String[] queryItem = Arrays.stream(q.split("and")).map(String::trim).toArray(String[]::new);
             st = new StringTokenizer(queryItem[3]," ");
-
-            queryItem[0] = queryItem[0].trim();
-            queryItem[1] = queryItem[1].trim();
-            queryItem[2] = queryItem[2].trim();
             queryItem[3] = st.nextToken();
             addValue(queryItem,Integer.parseInt(st.nextToken()),0,"",index);
             index++;
