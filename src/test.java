@@ -2,11 +2,32 @@ import java.util.*;
 
 public class test {
 
-    public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(0, 1);
-        String[] arr = {"gdgd ", " bb"};
+    static class Point {
+        int r,c;
 
-        String[] strings = Arrays.stream(arr).map(String::trim).toArray(String[]::new);
+        public Point(int r, int c) {
+            this.r = r;
+            this.c = c;
+        }
+
+        public void setR(int r) {
+            this.r = r;
+        }
+
+        public void setC(int c) {
+            this.c = c;
+        }
+
+        @Override
+        public String toString() {
+            return "Point{" +
+                    "r=" + r +
+                    ", c=" + c +
+                    '}';
+        }
+    }
+    public static void main(String[] args) {
 
     }
+
 }
