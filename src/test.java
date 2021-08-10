@@ -50,13 +50,6 @@ public class test {
         StringBuilder sb = new StringBuilder();
         sb.append("a");
 
-        for(int i = 0; i<1000000; i++) {
-//            str+= "a";
-            sb.append("a");
-        }
-        System.out.println(sb.toString());
-
-
     }
 
 }
