@@ -2,21 +2,18 @@ package programmers;
 
 import java.util.*;
 
-public class 동굴탐험 {
+class 동굴탐험 {
     static List<Integer>[] list;
-    static int[] prev;
-    static boolean[] v;
-    static Map<Integer, Integer> map = new HashMap<>();
+    static boolean[] v, prev;
+    static Map<Integer, Integer> map = new HashMap<>(), revMap = new HashMap<>();
 
     public boolean solution(int n, int[][] path, int[][] order) {
         boolean answer = true;
-
         list = new ArrayList[n];
-        prev = new int[n];
+        prev = new boolean[n];
         v = new boolean[n];
+        prev[0] = true;
 
-        Arrays.fill(prev, -1);
-        prev[0] = 0;
         for (int i = 0; i < n; i++)
             list[i] = new ArrayList<>();
 
@@ -24,13 +21,19 @@ public class 동굴탐험 {
             int start = path[i][0];
             int end = path[i][1];
             list[start].add(end);
-            prev[end] = start;
+            list[end].add(start);
         }
 
-        for (int i = 0; i < order.length; i++)
+        for (int i = 0; i < order.length; i++) {
             map.put(order[i][0], order[i][1]);
+            revMap.put(order[i][1], order[i][0]);
+        }
 
+        if (revMap.containsKey(0)) return false;
         cal();
+        for (int i = 0; i < n; i++)
+            if (!v[i]) answer = false;
+
         return answer;
     }
 
@@ -40,17 +43,21 @@ public class 동굴탐험 {
         q.add(0);
         while (!q.isEmpty()) {
             int p = q.poll();
-
             int size = list[p].size();
 
             for (int i = 0; i < size; i++) {
                 int idx = list[p].get(i);
-
-                if (map.containsKey(idx)) {
-                    System.out.println("hi");
-                }
+                prev[idx] = true;
+                if (v[idx]) continue;
+                if (revMap.containsKey(idx) && !v[revMap.get(idx)]) continue;
+                v[idx] = true;
+                q.add(idx);
             }
 
+            if (map.containsKey(p) && prev[map.get(p)]) {
+                v[map.get(p)] = true;
+                q.add(map.get(p));
+            }
         }
     }
 }
