@@ -33,7 +33,7 @@ public class 미생물격리 {
             K = Integer.parseInt(st.nextToken()); // 군집 개수
             q.clear();
 
-            map = new int[N][N][3];
+            map = new int[N][N][3]; // 0 1  2 ->
 
             for (int i = 0; i < K; i++) {
                 st = new StringTokenizer(br.readLine());
