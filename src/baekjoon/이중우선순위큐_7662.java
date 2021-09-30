@@ -2,23 +2,34 @@ package baekjoon;
 
 import java.util.*;
 import java.io.*;
+import java.util.stream.Collectors;
 
 public class 이중우선순위큐_7662 {
     static int T, k;
-    static PriorityQueue<Point> maxQ;
-    static PriorityQueue<Point> minQ;
-    static Set<Integer> set;
+    static PriorityQueue<Point> maxQ = new PriorityQueue<>((o1, o2) -> o2.num - o1.num);
+    static PriorityQueue<Point> minQ = new PriorityQueue<>((o1, o2) -> o1.num - o2.num);
 
     static class Point {
-        int idx, num;
+        int num;
+        boolean status = false;
 
-        public Point(int idx, int num) {
-            this.idx = idx;
+        public Point(int num) {
             this.num = num;
         }
 
+        public int getNum() {
+            return num;
+        }
+
+        public void changeStatus() {
+            status = true;
+        }
+
         public boolean delete() {
-            if (set.add(idx)) return true;
+            if (!status) {
+                changeStatus();
+                return true;
+            }
             return false;
         }
     }
@@ -27,42 +38,38 @@ public class 이중우선순위큐_7662 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         T = Integer.parseInt(br.readLine());
 
-        maxQ = new PriorityQueue<>((o1, o2) -> o2.num - o1.num);
-        minQ = new PriorityQueue<>((o1, o2) -> o1.num - o2.num);
-        set = new HashSet<>();
-
         while (T-- > 0) {
-            maxQ.clear();
-            minQ.clear();
-            set.clear();
-
+            init();
             k = Integer.parseInt(br.readLine());
             for (int i = 0; i < k; i++) {
                 StringTokenizer st = new StringTokenizer(br.readLine());
-                Character c = st.nextToken().charAt(0);
-                int num = Integer.parseInt(st.nextToken());
-
-                if (c == 'I') {
-                    minQ.add(new Point(i, num));
-                    maxQ.add(new Point(i, num));
-                } else {
-                    if (num == 1) cal(maxQ);
-                    else cal(minQ);
-                }
+                executeOrder(st.nextToken().charAt(0), Integer.parseInt(st.nextToken()));
             }
 
-            int max = Integer.MIN_VALUE;
-            int min = Integer.MAX_VALUE;
-            boolean flag = true;
-            while (!minQ.isEmpty()) {
-                Point poll = minQ.poll();
-                if (poll.delete()) {
-                    flag = false;
-                    max = Math.max(max, poll.num);
-                    min = Math.min(min, poll.num);
-                }
-            }
-            System.out.printf(flag ? "EMPTY\n" : "%d %d\n", max, min);
+            List<Integer> answer = minQ.stream()
+                    .filter(Point::delete)
+                    .map(Point::getNum)
+                    .sorted()
+                    .collect(Collectors.toList());
+
+            int size = answer.size();
+            System.out.println(size == 0 ? "EMPTY" : answer.get(size - 1) + " " + answer.get(0));
+        }
+    }
+
+    private static void init() {
+        maxQ.clear();
+        minQ.clear();
+    }
+
+    private static void executeOrder(Character c, int num) {
+        if (c == 'I') {
+            Point p = new Point(num);
+            minQ.add(p);
+            maxQ.add(p);
+        } else {
+            if (num == 1) cal(maxQ);
+            else cal(minQ);
         }
     }
 
