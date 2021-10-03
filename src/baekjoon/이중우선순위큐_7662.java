@@ -5,6 +5,30 @@ import java.io.*;
 import java.util.stream.Collectors;
 
 public class 이중우선순위큐_7662 {
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        T = Integer.parseInt(br.readLine());
+
+        while (T-- > 0) {
+            init();
+            k = Integer.parseInt(br.readLine());
+            for (int i = 0; i < k; i++) {
+                StringTokenizer st = new StringTokenizer(br.readLine());
+                executeOrder(st.nextToken().charAt(0), Integer.parseInt(st.nextToken()));
+            }
+
+            List<Integer> answer = minQ.stream()
+                    .filter(Point::delete)
+                    .map(Point::getNum)
+                    .sorted()
+                    .collect(Collectors.toList());
+
+            int size = answer.size();
+            System.out.println(size == 0 ? "EMPTY" : answer.get(size - 1) + " " + answer.get(0));
+        }
+    }
+
     static int T, k;
     static PriorityQueue<Point> maxQ = new PriorityQueue<>((o1, o2) -> o2.num - o1.num);
     static PriorityQueue<Point> minQ = new PriorityQueue<>((o1, o2) -> o1.num - o2.num);
@@ -34,28 +58,6 @@ public class 이중우선순위큐_7662 {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        T = Integer.parseInt(br.readLine());
-
-        while (T-- > 0) {
-            init();
-            k = Integer.parseInt(br.readLine());
-            for (int i = 0; i < k; i++) {
-                StringTokenizer st = new StringTokenizer(br.readLine());
-                executeOrder(st.nextToken().charAt(0), Integer.parseInt(st.nextToken()));
-            }
-
-            List<Integer> answer = minQ.stream()
-                    .filter(Point::delete)
-                    .map(Point::getNum)
-                    .sorted()
-                    .collect(Collectors.toList());
-
-            int size = answer.size();
-            System.out.println(size == 0 ? "EMPTY" : answer.get(size - 1) + " " + answer.get(0));
-        }
-    }
 
     private static void init() {
         maxQ.clear();
