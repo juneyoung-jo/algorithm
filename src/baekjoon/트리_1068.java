@@ -47,7 +47,7 @@ public class 트리_1068 {
     static Map<Integer, Node> map = new HashMap<>();
     static int rootNode;
 
-    static class Node {
+    static class Node { // ddd -> Domain Model pattern
         Boolean isRoot = true;
         Boolean isLeaf = true;
         Node parentNode = null;
