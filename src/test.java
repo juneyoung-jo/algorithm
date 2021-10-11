@@ -16,11 +16,14 @@ public class test {
 
 //        map.forEach((k, v) -> System.out.println("v = " + v));
 
-        List<String> list = new ArrayList<>();
-        list.add("a");
-        list.add("b");
+//        List<String> list = new ArrayList<>();
+//        list.add("a");
+//        list.add("b");
+//
+//        list.forEach((v) -> System.out.println(list.indexOf(v)));
 
-        list.forEach((v) -> System.out.println(list.indexOf(v)));
+        String str = "12.345-6.A";
+        System.out.println(Arrays.toString(str.split(".")));
 
 
 
