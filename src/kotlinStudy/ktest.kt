@@ -42,10 +42,31 @@ fun main() {
 //    println(person)
 
 //    println(people.count { it.age <= 29 })
-    println(alphabet())
+//    println(alphabet())
+
+//    printAllCaps("A")
+
+    val map = mapOf<Int,Int>(1 to 1, 2 to 2)
+    val maxOf = map.values.maxOf { it }
+    println(maxOf)
 
 }
+fun printAllCaps(s: String?) {
+    val allCaps = s?.toUpperCase()
+    println(allCaps)
+}
 
+
+// apply
+fun alphabet() = StringBuilder().apply {
+    for (letter in 'A'..'Z') {
+        append(letter)
+    }
+    append("\nend")
+}.toString()
+
+/*
+// with
 fun alphabet() = with(StringBuilder()) {
     for (letter in 'A'..'Z') {
         append(letter)
@@ -53,6 +74,8 @@ fun alphabet() = with(StringBuilder()) {
     append("\nend")
     toString()
 }
+ */
+
 
 
 fun String.lastChar() = get(length - 1)
