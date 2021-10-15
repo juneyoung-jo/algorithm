@@ -7,11 +7,8 @@ fun main() = with(System.`in`.bufferedReader()) {
     val cnt = IntArray(n + 1)
     val sb = StringBuilder()
 
-    for (i in 1 until n) {
-        val (n, m) = readLine().split(' ').map { it.toInt() }
-        cnt[n]++
-        cnt[m]++
-    }
+    for (i in 1 until n)
+        readLine().split(' ').forEach { cnt[it.toInt()]++ }
 
     for (i in 1..readLine().toInt()) {
         val (n, m) = readLine().split(' ').map { it.toInt() }
