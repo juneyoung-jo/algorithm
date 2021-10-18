@@ -46,10 +46,16 @@ fun main() {
 
 //    printAllCaps("A")
 
-    val map = mapOf<Int,Int>(1 to 1, 2 to 2)
-    val maxOf = map.values.maxOf { it }
-    println(maxOf)
+//    val map = mapOf<Int,Int>(1 to 1, 2 to 2)
+//    val maxOf = map.values.maxOf { it }
+//    println(maxOf)
 
+    twoAndThree{x,y -> x+y}
+}
+
+fun twoAndThree(operation: (Int,Int) -> Int) {
+    val result = operation(2,3)
+    println(result)
 }
 fun printAllCaps(s: String?) {
     val allCaps = s?.toUpperCase()
