@@ -24,7 +24,8 @@ fun main() = with(System.`in`.bufferedReader()) {
     println(maxValue)
 }
 
-fun dfs(idx: Int, sum: Int, v: BooleanArray): Int {
+
+private fun dfs(idx: Int, sum: Int, v: BooleanArray): Int {
     if (v[idx]) return 0
     v[idx] = true
     map[idx]?.forEach {
@@ -37,5 +38,5 @@ fun dfs(idx: Int, sum: Int, v: BooleanArray): Int {
     return sum
 }
 
-fun init(hashMapOf: HashMap<Int, MutableList<Point>>) = (1..10000).forEach { hashMapOf[it] = mutableListOf() }
+private fun init(hashMapOf: HashMap<Int, MutableList<Point>>) = (1..10000).forEach { hashMapOf[it] = mutableListOf() }
 
