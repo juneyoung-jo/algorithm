@@ -1,13 +1,13 @@
 package baekjoon
 
-data class Point(
+private data class Point(
     val to: Int,
     val cnt: Int
 )
 
-var maxValue = 0
-var maxIndex = 0
-val map = hashMapOf<Int, MutableList<Point>>()
+private var maxValue = 0
+private var maxIndex = 0
+private val map = hashMapOf<Int, MutableList<Point>>()
 fun main() = with(System.`in`.bufferedReader()) {
 
     val n = readLine().toInt()

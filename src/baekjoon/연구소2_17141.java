@@ -1,13 +1,10 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.StringTokenizer;
+package baekjoon;
 
-public class test {
-    static int N, M, result, safe_cnt;
+import java.io.*;
+import java.util.*;
+
+public class 연구소2_17141 {
+    static int N, M, result, safeCnt;
     static int[][] array;
     static List<Point> safe;
     static Point[] arr;
@@ -48,9 +45,9 @@ public class test {
 
                 if (array[i][j] == 2) {
                     safe.add(new Point(i, j));
-                    safe_cnt += 1;
+                    safeCnt += 1;
                 } else if (array[i][j] == 0) {
-                    safe_cnt += 1;
+                    safeCnt += 1;
                 }
             }
         }
@@ -102,7 +99,7 @@ public class test {
             }
         }
 
-        if (count == safe_cnt) return maxTime;
+        if (count == safeCnt) return maxTime;
         return Integer.MAX_VALUE;
     }
 }
