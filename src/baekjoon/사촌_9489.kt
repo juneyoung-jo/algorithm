@@ -13,12 +13,9 @@ fun main() = with(System.`in`.bufferedReader()) {
             if (nodes[i] == k) kIndex = i
         }
 
-
-
-
-
-        parent.forEach(::print)
-
+        parent.asSequence()
+            .filter { it >= 1 && parent[kIndex] != it && parent[parent[kIndex]] == parent[it] }
+            .count()
+            .also(::println)
     }
 }
-
