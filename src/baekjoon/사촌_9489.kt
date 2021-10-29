@@ -2,7 +2,7 @@ fun main() = with(System.`in`.bufferedReader()) {
     while (true) {
         val (n, k) = readLine().split(' ').map { it.toInt() }
         if (n == 0 && k == 0) break
-        val nodes = readLine().split(' ').map { it.toInt() }.toIntArray()
+        val nodes = readLine().split(' ').map { it.toInt() }
         val parent = IntArray(n) { -1 }
         var idx = -1
         var kIndex = 0
