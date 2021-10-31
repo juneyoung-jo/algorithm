@@ -33,7 +33,7 @@ private fun searchGiga(r: Int): Pair<Int, Int> {
         if (v[p.node]) continue
         v[p.node] = true
         sum = max(sum, p.cnt)
-        if (giga == -1 && map[p.node]!!.size >= 3) {
+        if (giga == -1 && map[p.node]!!.size > 2) {
             giga = p.node
             gigaCnt = p.cnt
         }
