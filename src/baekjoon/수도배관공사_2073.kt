@@ -14,15 +14,15 @@ fun main() = with(System.`in`.bufferedReader()) {
 
     val q: PriorityQueue<Point_2073> = PriorityQueue { o1, o2 -> o2.c - o1.c }
 
-    q += Point_2073(0, 0, 0)
+    q += Point_2073(d, 0, 0)
     while (q.isNotEmpty()) {
         val point = q.poll()
-        if (point.l == d) {
+        if (point.l == 0) {
             return@with println(point.c)
         }
         (point.idx until p).forEach { idx ->
-            if (point.l + sortedList[idx].l <= d) {
-                q += Point_2073(point.l + sortedList[idx].l, sortedList[idx].c, idx + 1)
+            if (point.l >= sortedList[idx].l) {
+                q += Point_2073(point.l - sortedList[idx].l, sortedList[idx].c, idx + 1)
             }
         }
     }
