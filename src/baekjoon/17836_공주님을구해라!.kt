@@ -4,16 +4,12 @@ import java.util.*
 
 fun main() = with(System.`in`.bufferedReader()) {
     val (n, m, t) = readLine().split(' ').map { it.toInt() }
-    val map = Array(n) { IntArray(m) }
     val dr = listOf(1, -1, 0, 0)
     val dc = listOf(0, 0, 1, -1)
     val v = Array(2) { Array(n) { BooleanArray(m) } }
     val q: PriorityQueue<Point_17836> = PriorityQueue { o1, o2 -> o1.cnt - o2.cnt }
-
-    (1..n).forEach {
-        readLine().split(' ').forEachIndexed { j, jVal ->
-            map[it - 1][j] = jVal.toInt()
-        }
+    val map = Array(n) {
+        readLine().split(' ').map { it.toInt() }.toTypedArray()
     }
 
     q.add(Point_17836(0, 0, 0, 0))
