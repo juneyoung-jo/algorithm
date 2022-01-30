@@ -2,13 +2,13 @@ package programmers
 
 import kotlin.math.ceil
 
-private fun test(fees: IntArray, records: Array<String>): IntArray? {
+private fun test(fees: IntArray, records: Array<String>): IntArray {
     return records.map { it.split(' ') }
         .groupBy { it[1] }
         .asSequence()
         .sortedBy { it.key.toInt() }
         .map { it.value }
-        .map { computeFee(computeTime(it), fees)  }
+        .map { computeFee(computeTime(it), fees) }
         .toList()
         .toIntArray()
 }
