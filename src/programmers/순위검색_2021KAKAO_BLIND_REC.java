@@ -1,7 +1,7 @@
 package programmers;
 import java.util.*;
 
-public class 순위추천_2021KAKAO_BLIND_REC {
+public class 순위검색_2021KAKAO_BLIND_REC {
     static Map<String,List<Integer>> map = new HashMap<>();
     static String[] language = {"-","cpp", "java", "python"};
     static String[] job = {"-","backend","frontend"};
