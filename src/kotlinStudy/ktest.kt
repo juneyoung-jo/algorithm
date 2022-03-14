@@ -52,12 +52,28 @@ fun main() {
 
 //    twoAndThree { x, y -> x + y }
 
+    // 연습문제 3-1,2
     val squareOfTriple = compose(::square, ::triple)
-    println(squareOfTriple(3))
+//    println(squareOfTriple(2))
+
+    // 연습문제 3-3
+    val add: (Int) -> (Int) -> Int = { a -> { b -> a + b } }
+//    println(add(3)(5))
+
+    val squareOfTriple2 = higherCompose<Int, Int, Int>()(::square)(::triple)
+
 }
 
+fun <T, U, V> higherCompose() =
+    { f: (U) -> V ->
+        { g: (T) -> U ->
+            { x: T -> f(g(x)) }
+        }
+    }
 
-fun compose(f: (Int) -> Int, g: (Int) -> Int): (Int) -> Int = { f(g(it)) }
+fun <T, U, V> compose(f: (U) -> V, g: (T) -> U): (T) -> V = { f(g(it)) }
+
+//fun compose(f: (Int) -> Int, g: (Int) -> Int): (Int) -> Int = { f(g(it)) }
 fun triple(n: Int) = n * 3
 fun square(n: Int) = n * n
 
