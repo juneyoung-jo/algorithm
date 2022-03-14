@@ -50,13 +50,22 @@ fun main() {
 //    val maxOf = map.values.maxOf { it }
 //    println(maxOf)
 
-    twoAndThree{x,y -> x+y}
+//    twoAndThree { x, y -> x + y }
+
+    val squareOfTriple = compose(::square, ::triple)
+    println(squareOfTriple(3))
 }
 
-fun twoAndThree(operation: (Int,Int) -> Int) {
-    val result = operation(2,3)
+
+fun compose(f: (Int) -> Int, g: (Int) -> Int): (Int) -> Int = { f(g(it)) }
+fun triple(n: Int) = n * 3
+fun square(n: Int) = n * n
+
+fun twoAndThree(operation: (Int, Int) -> Int) {
+    val result = operation(2, 3)
     println(result)
 }
+
 fun printAllCaps(s: String?) {
     val allCaps = s?.toUpperCase()
     println(allCaps)
