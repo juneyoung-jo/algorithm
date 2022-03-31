@@ -1,6 +1,7 @@
 package kotlinStudy
 
 import kotlinStudy.Expr.*
+import java.lang.IllegalArgumentException
 import java.lang.StringBuilder
 
 class Rectangle(val height: Int, val width: Int) {
@@ -53,16 +54,40 @@ fun main() {
 //    twoAndThree { x, y -> x + y }
 
     // 연습문제 3-1,2
-    val squareOfTriple = compose(::square, ::triple)
+//    val squareOfTriple = compose(::square, ::triple)
 //    println(squareOfTriple(2))
 
     // 연습문제 3-3
-    val add: (Int) -> (Int) -> Int = { a -> { b -> a + b } }
+//    val add: (Int) -> (Int) -> Int = { a -> { b -> a + b } }
 //    println(add(3)(5))
 
-    val squareOfTriple2 = higherCompose<Int, Int, Int>()(::square)(::triple)
+//    val squareOfTriple2 = higherCompose<Int, Int, Int>()(::square)(::triple)
 
+    HeadTailList().main()
 }
+
+class HeadTailList {
+    fun main() {
+        val list = listOf(1, 2, 3, 4)
+        println(head(list))
+        println(tail(list))
+    }
+
+    fun <T> head(list: List<T>): T {
+        if (list.isEmpty())
+            throw IllegalArgumentException("Head called on empty list")
+        else
+            return list[0]
+    }
+
+    fun <T> tail(list: List<T>): List<T> {
+        if (list.isEmpty())
+            throw IllegalArgumentException("Head called on empty list")
+        else
+            return list.drop(1)
+    }
+}
+
 
 fun <T, U, V> higherCompose() =
     { f: (U) -> V ->
