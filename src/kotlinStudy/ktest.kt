@@ -69,23 +69,40 @@ fun main() {
 class HeadTailList {
     fun main() {
         val list = listOf(1, 2, 3, 4)
-        println(head(list))
-        println(tail(list))
+//        println(head(list))
+//        println(tail(list))
+        println(list.head())
+        println(list.tail())
     }
 
-    fun <T> head(list: List<T>): T {
-        if (list.isEmpty())
+    fun <T> List<T>.head(): T {
+        if (this.isEmpty())
             throw IllegalArgumentException("Head called on empty list")
         else
-            return list[0]
+            return this[0]
     }
 
-    fun <T> tail(list: List<T>): List<T> {
-        if (list.isEmpty())
+    fun <T> List<T>.tail(): List<T> {
+        if (this.isEmpty())
             throw IllegalArgumentException("Head called on empty list")
         else
-            return list.drop(1)
+            return this.drop(1)
     }
+
+
+//    fun <T> head(list: List<T>): T {
+//        if (list.isEmpty())
+//            throw IllegalArgumentException("Head called on empty list")
+//        else
+//            return list[0]
+//    }
+
+//    fun <T> tail(list: List<T>): List<T> {
+//        if (list.isEmpty())
+//            throw IllegalArgumentException("Head called on empty list")
+//        else
+//            return list.drop(1)
+//    }
 }
 
 
