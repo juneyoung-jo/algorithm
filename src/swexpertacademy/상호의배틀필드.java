@@ -38,10 +38,13 @@ public class 상호의배틀필드 {
 
             N = Integer.parseInt(br.readLine());
             String commands = br.readLine();
+
+            // solved
             for (int n = 0; n < N; ++n) {
-                char command = commands.charAt(n);
-                execute(command);
+                execute(commands.charAt(n));
             }
+
+            // answer
             sb.append("#" + tc + " ");
             printField();
         }
@@ -54,27 +57,49 @@ public class 상호의배틀필드 {
             case 'U':
                 nr = r + dr[0];
                 nc = c + dc[0];
-                process(nr, nc, '^');
+                move(nr, nc, '^');
                 break;
             case 'D':
                 nr = r + dr[1];
                 nc = c + dc[1];
-                process(nr, nc, 'v');
+                move(nr, nc, 'v');
                 break;
             case 'L':
                 nr = r + dr[2];
                 nc = c + dc[2];
-                process(nr, nc, '<');
+                move(nr, nc, '<');
                 break;
             case 'R':
                 nr = r + dr[3];
                 nc = c + dc[3];
-                process(nr, nc, '>');
+                move(nr, nc, '>');
                 break;
             case 'S':
                 shoot();
                 break;
         }
+    }
+
+    private static void move(int nr, int nc, char command) {
+        // 방향 변경
+        field[r][c] = command;
+
+        // 이동
+        if (!isEdge(nr, nc)
+                && isFlat(field[nr][nc])) {
+            field[r][c] = '.';
+            field[nr][nc] = command;
+            r = nr;
+            c = nc;
+        }
+    }
+
+    private static boolean isFlat(char component) {
+        return component == '.';
+    }
+
+    private static boolean isEdge(int row, int col) {
+        return row < 0 || col < 0 || row >= H || col >= W;
     }
 
     private static void shoot() {
@@ -124,25 +149,6 @@ public class 상호의배틀필드 {
                 }
                 break;
         }
-    }
-
-    private static void process(int nr, int nc, char command) {
-        field[r][c] = command;
-        if (!isEdge(nr, nc)
-                && isFlat(field[nr][nc])) {
-            field[r][c] = '.';
-            field[nr][nc] = command;
-            r = nr;
-            c = nc;
-        }
-    }
-
-    private static boolean isFlat(char component) {
-        return component == '.';
-    }
-
-    private static boolean isEdge(int row, int col) {
-        return row < 0 || col < 0 || row >= H || col >= W;
     }
 
     private static void printField() {
