@@ -12,11 +12,13 @@ public class 상호의배틀필드 {
     private static int[] dr = {-1, 1, 0, 0};
     private static int[] dc = {0, 0, -1, 1};
 
+    private static StringBuilder sb = new StringBuilder();
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         T = Integer.parseInt(br.readLine());
 
-        for (int tc = 0; tc < T; ++tc) {
+        for (int tc = 1; tc <= T; ++tc) {
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             H = Integer.parseInt(st.nextToken());
             W = Integer.parseInt(st.nextToken());
@@ -40,34 +42,92 @@ public class 상호의배틀필드 {
                 char command = commands.charAt(n);
                 execute(command);
             }
+            sb.append("#" + tc + " ");
+            printField();
         }
-        printField();
+        System.out.println(sb);
     }
 
     private static void execute(char command) {
-
+        int nr, nc;
         switch (command) {
             case 'U':
-                process(dr[0], dc[0], '^');
+                nr = r + dr[0];
+                nc = c + dc[0];
+                process(nr, nc, '^');
                 break;
             case 'D':
-                process(dr[1], dc[1], 'v');
+                nr = r + dr[1];
+                nc = c + dc[1];
+                process(nr, nc, 'v');
                 break;
             case 'L':
-                process(dr[2], dc[2], '<');
+                nr = r + dr[2];
+                nc = c + dc[2];
+                process(nr, nc, '<');
                 break;
             case 'R':
-                process(dr[3], dc[3], '>');
+                nr = r + dr[3];
+                nc = c + dc[3];
+                process(nr, nc, '>');
                 break;
             case 'S':
+                shoot();
                 break;
         }
-
     }
 
-    private static void process(int dr, int dc, char command) {
-        int nr = r + dr;
-        int nc = c + dc;
+    private static void shoot() {
+        switch (field[r][c]) {
+            case '^':
+                for (int row = r - 1; row >= 0; --row) {
+                    if (field[row][c] == '#') {
+                        break;
+                    }
+                    if (field[row][c] == '*') {
+                        field[row][c] = '.';
+                        break;
+                    }
+                }
+                break;
+            case 'v':
+                for (int row = r + 1; row < H; ++row) {
+                    if (field[row][c] == '#') {
+                        break;
+                    }
+                    if (field[row][c] == '*') {
+                        field[row][c] = '.';
+                        break;
+                    }
+                }
+                break;
+            case '<':
+                for (int col = c - 1; col >= 0; --col) {
+                    if (field[r][col] == '#') {
+                        break;
+                    }
+                    if (field[r][col] == '*') {
+                        field[r][col] = '.';
+                        break;
+                    }
+                }
+                break;
+            case '>':
+                for (int col = c + 1; col < W; ++col) {
+                    if (field[r][col] == '#') {
+                        break;
+                    }
+                    if (field[r][col] == '*') {
+                        field[r][col] = '.';
+                        break;
+                    }
+                }
+                break;
+        }
+    }
+
+    private static void process(int nr, int nc, char command) {
+        field[r][c] = command;
         if (!isEdge(nr, nc)
                 && isFlat(field[nr][nc])) {
             field[r][c] = '.';
@@ -88,9 +148,9 @@ public class 상호의배틀필드 {
     private static void printField() {
         for (int r = 0; r < H; r++) {
             for (int c = 0; c < W; c++) {
-                System.out.print(field[r][c]);
+                sb.append(field[r][c]);
             }
-            System.out.println();
+            sb.append("\n");
         }
     }
 }
