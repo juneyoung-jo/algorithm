@@ -14,16 +14,16 @@ public class 중복순열_순열_중복조합_조합_부분집합 {
 
         N = sc.nextInt();
         numbers = new int[N];
-        isSelected = new boolean[N];
+        isSelected = new boolean[7];
 
         // 중복순열
-        // permutation1(0);
+//         permutation1(0);
         // 순열
-        // permutation2(0);
+//         permutation2(0);
         // 중복조합
-        // combination1(0, 1);
+         combination1(0, 1);
         // 조합
-        // combination2(0, 1);
+//         combination2(0, 1);
         // 부분집합
 //        powerSet(0);
         System.out.println(totalCnt);
@@ -87,8 +87,7 @@ public class 중복순열_순열_중복조합_조합_부분집합 {
         }
 
         for (int i = 1; i <= 6; i++) {
-            if (isSelected[i])
-                continue;
+            if (isSelected[i]) continue;
             numbers[idx] = i;
             isSelected[i] = true;
             permutation2(idx + 1);
