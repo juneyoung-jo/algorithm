@@ -17,11 +17,11 @@ public class N과M_2_15650 {
 
         answer = new int[M];
 
-        permutation(0, 1);
+        combination(0, 1);
 
     }
 
-    private static void permutation(int index, int start) {
+    private static void combination(int index, int start) {
         if (index == M) {
             String result = Arrays.stream(answer)
                     .mapToObj(String::valueOf)
@@ -32,7 +32,7 @@ public class N과M_2_15650 {
 
         for (int i = start; i <= N; i++) {
             answer[index] = i;
-            permutation(index + 1, i + 1);
+            combination(index + 1, i + 1);
         }
     }
 }
