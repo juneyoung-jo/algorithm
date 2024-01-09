@@ -10,7 +10,6 @@ public class 토마토_7569 {
     private static int[] dh = {0, 0, 0, 0, -1, 1};
     private static int M, N, H, result = -1;
     private static int[][][] map;
-    private static boolean[][][] v;
     private static Queue<Tomato> q = new LinkedList<>();
 
     private static class Tomato {
@@ -32,19 +31,14 @@ public class 토마토_7569 {
         N = Integer.parseInt(st.nextToken());
         H = Integer.parseInt(st.nextToken());
         map = new int[H][N][M];
-        v = new boolean[H][N][M];
 
         for (int h = 0; h < H; h++) {
             for (int r = 0; r < N; r++) {
                 st = new StringTokenizer(br.readLine());
                 for (int c = 0; c < M; c++) {
                     map[h][r][c] = Integer.parseInt(st.nextToken());
-                    if (map[h][r][c] == 1) {
-                        v[h][r][c] = true;
+                    if (map[h][r][c] == 1)
                         q.add(new Tomato(h, r, c, 0));
-                    } else if (map[h][r][c] == -1) {
-                        v[h][r][c] = true;
-                    }
                 }
             }
         }
@@ -81,7 +75,6 @@ public class 토마토_7569 {
 
                 if (nh >= 0 && nr >= 0 && nc >= 0 && nh < H && nr < N && nc < M
                         && map[nh][nr][nc] == 0 // 안 익은 토마토
-                        && !v[nh][nr][nc] // 방문 가능한 위치
                 ) {
                     map[nh][nr][nc] = 1;
                     q.add(new Tomato(nh, nr, nc, now.cnt + 1));
