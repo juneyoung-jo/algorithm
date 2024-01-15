@@ -45,13 +45,13 @@ public class 상어초등학교_21608 {
                 friendList[j] = Integer.parseInt(st.nextToken());
             }
             friendsMap.put(friend, friendList);
-            seat(friend);
+            sit(friend);
         }
 
         System.out.println(calSatisfaction());
     }
 
-    private static void seat(int friend) {
+    private static void sit(int friend) {
         List<Seat> seats = new ArrayList<>();
         Integer[] friends = friendsMap.get(friend);
         for (int r = 0; r < N; r++) {
