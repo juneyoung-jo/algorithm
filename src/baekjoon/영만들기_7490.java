@@ -24,21 +24,19 @@ public class 영만들기_7490 {
     private static void dfs(int start, int end, String acc) {
         acc += start;
         if (start == end) {
-            if(isZero(acc.replace(" ", ""))){
+            if (isZero(acc.replace(" ", ""))) {
                 sb.append(acc).append("\n");
             }
             return;
         }
 
         for (int i = 0; i < 3; i++) {
-            acc += signs[i];
-            dfs(start + 1, end, acc);
-            acc = acc.substring(0, acc.length() - 1);
+            dfs(start + 1, end, acc + signs[i]);
         }
     }
 
     private static boolean isZero(String expression) {
-        String[] operands = expression.split("[\\+\\-]");
+        String[] operands = expression.split("[+-]");
         String[] operators = expression.split("[0-9]+");
 
         int result = Integer.parseInt(operands[0]);
