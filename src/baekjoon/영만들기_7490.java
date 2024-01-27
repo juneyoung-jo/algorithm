@@ -35,6 +35,7 @@ public class 영만들기_7490 {
         }
     }
 
+    // TODO: 구현부 다른방법으로 시도해볼 것 - 240128
     private static boolean isZero(String expression) {
         String[] operands = expression.split("[+-]");
         String[] operators = expression.split("[0-9]+");
