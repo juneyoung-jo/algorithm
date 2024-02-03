@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class 호석이두마리치킨 {
+public class 호석이두마리치킨_21278 {
 
     private static int N, M;
     private static int[][] distance;
