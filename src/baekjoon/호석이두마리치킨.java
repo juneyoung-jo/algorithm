@@ -38,22 +38,32 @@ public class 호석이두마리치킨 {
         floydWarshall();
 
         // 치킨집 조합 계산
-        calResult();
+        int[] results = calResult();
+        System.out.println(results[0] + " " + results[1] + " " + results[2]);
+
     }
 
-    private static void calResult() {
+    private static int[] calResult() {
         int minValue = Integer.MAX_VALUE;
         int fistNode = 100;
         int secondNode = 100;
 
         for (int i = 1; i <= N; i++) {
             for (int j = 1; j <= N; j++) {
-                if(i==j) continue;
+                if (i == j) continue;
+                int sum = 0;
                 for (int k = 1; k <= N; k++) {
-
+                    sum += Math.min(distance[k][i], distance[k][j]) * 2;
+                }
+                if (minValue > sum) {
+                    minValue = sum;
+                    fistNode = i;
+                    secondNode = j;
                 }
             }
         }
+
+        return new int[]{fistNode, secondNode, minValue};
     }
 
     private static void floydWarshall() {
