@@ -75,8 +75,8 @@ public class 어른상어_19237 {
         while (checkResult()) {
             result += 1; // 1초 증가
             calK(); // 냄새 계산
-            getTmepMoveShark(); // 상어가 이동할 좌표 계산
-            move();
+            getTempMoveShark(); // 상어가 이동할 좌표 구하기
+            move(); // 실제 상어 이동
         }
 
         System.out.println(result > MAX_RESULT_COUNT ? -1 : result);
@@ -112,7 +112,7 @@ public class 어른상어_19237 {
     }
 
     // 이동
-    private static void getTmepMoveShark() {
+    private static void getTempMoveShark() {
         while (!moveQ.isEmpty()) {
             Shark shark = moveQ.poll();
             List<Integer> availableMove = new ArrayList<>(); // 이동 가능한 장소
