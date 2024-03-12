@@ -164,7 +164,6 @@ public class 어른상어_19237 {
     }
 
     private static boolean checkResult() {
-        if (moveQ.size() == 1) return false;
-        return result <= 1000;
+        return moveQ.size() > 1 && result <= 1000;
     }
 }
